@@ -1,0 +1,31 @@
+.body__contact {
+    height: 100%;
+}
+
+.main__contact {
+    height: 70%;
+}
+
+.contants__block {
+    display: flex;
+    height: 100%;
+    padding-top: 6rem;
+}
+
+.contacts__title {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.contacts__text-400 {
+    font-size: 1rem;
+    line-height: 1rem;
+    color: #000;
+
+}
+.contacts__text-700 {
+    font-size: 1rem;
+    line-height: 1rem;
+    color: #000;
+    font-weight: 700;
+}

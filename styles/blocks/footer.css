@@ -1,0 +1,109 @@
+.footer {
+    background-color: var(--color-black-blue);
+    padding-bottom: 0.1rem;
+}
+.footer__blocks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__block {
+    margin-top: 5rem;
+}
+
+.footer__title {
+    font-size: 20px;
+    color: var(--color-base-white);
+}
+
+.footer__item {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 1);
+    margin-top: 0.8rem;
+}
+
+.footer__email-icon {
+    position: relative;
+    margin-left: 2rem;
+}
+
+.footer__tel-icon {
+    position: relative;
+    margin-left: 2rem;
+}
+
+.footer__mobile-icon {
+    position: relative;
+    margin-left: 2rem;
+}
+
+.footer__tel-icon::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    background-image: url('../../media/tel-icon.svg');
+    left: -2rem;
+    background-repeat: no-repeat;
+}
+
+.footer__mobile-icon::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    background-image: url('../../media/mobile-icon.svg');
+    left: -2rem;
+    background-repeat: no-repeat;
+}
+
+.footer__email-icon::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    background-image: url('../../media/email-icon.svg');
+    left: -2rem;
+    background-repeat: no-repeat;
+}
+
+.footer__hr {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.footer__copyright {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 1rem 0 1rem 0;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 460px) {
+    .footer__blocks {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__item {
+        margin-left: 0;
+    }
+
+    .footer__email-icon::before {
+        display: none;
+    }
+
+    .footer__mobile-icon::before {
+        display: none;
+    }
+    .footer__tel-icon::before {
+        display: none;
+    }
+}

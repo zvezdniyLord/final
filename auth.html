@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Integrity SCADA" name="og:title" />
+    <meta content="Integrity SCADA - ИНТ" name="og:description" />
+    <meta content="Integrity SCADA - ИНТ" name="description" />
+    <link rel="shortcut icon" href="./media/favicon.svg" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <title>Авторизация</title>
+  </head>
+  <body class="body">
+    <header class="header header__block">
+      <div class="header__logo-block">
+        <a href="./index.html"
+          ><picture>
+            <source
+              srcset="./media/logo-mobile.svg"
+              media="(max-width: 440px)"
+            />
+            <img
+              class="header__logo"
+              width="41"
+              height="41"
+              src="./media/logo.svg"
+              alt="Логотип"
+            />
+          </picture>
+        </a>
+        <a href="./index.html"><h1 class="header__title">ИНТ</h1></a>
+      </div>
+      <div class="header__container">
+        <div class="header__container-items">
+          <p class="header__p">
+            <a class="header__link" href="./about.html">о нас</a>
+          </p>
+          <div class="header__p header__p-hover-product">
+            <button class="btn__header-p">
+              <a class="header__link" href="./products.html">продукты</a>
+            </button>
+            <div class="dropdown">
+              <div class="dropdown__content">
+                <a href="./iserver.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityServer</p>
+                  </div>
+                </a>
+                <a href="./reports.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityReports</p>
+                  </div>
+                </a>
+                <a href="./datatransport.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityDataTransport</p>
+                  </div>
+                </a>
+                <a href="./historyserver.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityHistoryServer</p>
+                  </div>
+                </a>
+                <a href="./hmi.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityHMI</p>
+                  </div>
+                </a>
+                <a href="./trends.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityTrends</p>
+                  </div>
+                </a>
+                <a href="./alarms.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityAlarms</p>
+                  </div>
+                </a>
+                <a href="./webhmi.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Web Приложения</p>
+                  </div>
+                </a>
+                <a href="./licence.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Политика лицензирования</p>
+                  </div>
+                </a>
+                <a href="systemreq.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">
+                      Аппаратные системные требования
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="header__p header__p-hover-supports">
+            <button class="btn__header-p">
+              <a class="header__link" href="./supports.html">поддержка</a>
+            </button>
+            <div class="dropdown">
+              <div class="dropdown__content">
+                <a href="./supports.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Техническая поддержка</p>
+                  </div>
+                </a>
+                <a href="./integrator.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Интеграторам</p>
+                  </div>
+                </a>
+                <a href="./documentation.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос документации</p>
+                  </div>
+                </a>
+                <a href="./demo.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос пробной версии</p>
+                  </div>
+                </a>
+                <a href="./price.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос ценового предложения</p>
+                  </div>
+                </a>
+                <a href="./education.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос на обучение</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <p class="header__p">
+            <a class="header__link" href="./contacts.html">контакты</a>
+          </p>
+        </div>
+        <a class="tel" href="">+7 (3822) 601-000</a>
+      </div>
+      <div class="header__auth-links">
+        <picture>
+          <svg
+            class="header__avatar"
+            width="28"
+            height="28"
+            viewBox="0 0 28 28"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M14.0001 7.75C15.9723 7.75 17.5716 9.34929 17.5716 11.3214C17.5716 13.2936 15.9723 14.8929 14.0001 14.8929C12.028 14.8929 10.4287 13.2936 10.4287 11.3214C10.4287 9.34929 12.028 7.75 14.0001 7.75ZM14.0001 9.25C15.1444 9.25 16.0716 10.1771 16.0716 11.3214C16.0716 12.4657 15.1444 13.3929 14.0001 13.3929C12.8559 13.3929 11.9287 12.4657 11.9287 11.3214C11.9287 10.1771 12.8559 9.25 14.0001 9.25Z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M14 16.3929C18.8321 16.3929 22.75 19.895 22.75 24.2143L22.7493 24.25H20.6757C20.5721 21.3579 17.3414 18.4643 14.1071 18.4643C10.8736 18.4643 7.71929 21.3586 7.61571 24.25H5.25071L5.25 24.2143C5.25 19.895 9.16786 16.3929 14 16.3929Z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M14 26C20.6274 26 26 20.6274 26 14C26 7.37258 20.6274 2 14 2C7.37258 2 2 7.37258 2 14C2 20.6274 7.37258 26 14 26ZM14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28Z"
+            />
+          </svg>
+        </picture>
+        <a class="header__auth-link" href="./auth.html">Вход</a>
+        <span class="header__span">|</span>
+        <a class="header__auth-link" href="./reg.html">Регистрация</a>
+      </div>
+    </header>
+    <div class="mob__menu">
+      <input class="side-menu" type="checkbox" id="side-menu" />
+      <label class="hamb" for="side-menu">
+        <span class="hamb-line"></span>
+        <div class="header__auth-link-mobile">
+          <picture>
+            <img
+              class="header__avatar"
+              src="./media/auth_avatar.svg"
+              alt="Аватарка"
+            />
+          </picture>
+          <a class="header__auth-link" href="./auth.html">Вход</a>
+          <span class="header__span">|</span>
+          <a class="header__auth-link" href="./reg.html">Регистрация</a>
+        </div>
+      </label>
+
+      <nav class="nav">
+        <ul class="menu">
+          <div class="menu__block menu__block-product">
+            <p class="menu__item">Продукты</p>
+            <svg
+              class="svg"
+              width="13"
+              height="22"
+              viewBox="0 0 13 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L10 11L2 20"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="product__mobile-list mobile-list">
+            <div class="select__ll">
+              <div class="ll">
+                <a href="./iserver.html">
+                  <p class="ll-text">IntegrityServer</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./reports.html">
+                  <p class="ll-text">IntegrityReports</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./datatransport.html">
+                  <p class="ll-text">IntegrityDataTransport</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./historyserver.html">
+                  <p class="ll-text">IntegrityHistoryServer</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./hmi.html">
+                  <p class="ll-text">IntegrityHMI</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./trends.html">
+                  <p class="ll-text">IntegrityTrends</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./alarms.html">
+                  <p class="ll-text">IntegrityAlarms</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./webhmi.html">
+                  <p class="ll-text">IntegrityWebHMI</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="menu__block menu__block-supports">
+            <p class="menu__item">Поддержка</p>
+            <svg
+              class="svg-support"
+              width="13"
+              height="22"
+              viewBox="0 0 13 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L10 11L2 20"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="supports__mobile-list mobile-list">
+            <div class="select__ll">
+              <div class="ll">
+                <a href="./supports.html">
+                  <p class="ll-text">Техническая поддержка</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./integrator.html">
+                  <p class="ll-text">Интеграторам</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./documentation.html">
+                  <p class="ll-text">Запрос документации</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./demo.html">
+                  <p class="ll-text">Запрос пробной версии</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./price.html">
+                  <p class="ll-text">Запрос ценового предложения</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="./education.html">
+                  <p class="ll-text">Запрос на обучение</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <li><a href="./contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+    <section class="auth">
+      <form class="form__auth" action="#" id="loginForm">
+        <h2 class="form__auth-title">Авторизация</h2>
+        <!--<h3 class="form__auth-warning">Неверный логин или пароль</h3>-->
+        <input
+          class="input__auth form__auth-email"
+          type="email"
+          placeholder="Электронная почта"
+          id="authEmail"
+        />
+        <input
+          class="input__auth form__auth-password"
+          type="password"
+          placeholder="Пароль"
+          id="authPassword"
+        />
+        <svg
+          class="svg__auth"
+          width="25"
+          height="17"
+          viewBox="0 0 25 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0.25 8.45027C0.25 9.00877 0.758 9.59527 1.143 10.1073C1.982 11.2248 3.0265 12.4213 4.107 13.2933C5.991 14.8138 7.4515 15.6568 9.749 16.2513C11.3615 16.6683 13.5975 16.6553 15.211 16.2613C17.336 15.7428 19.712 14.4728 21.187 13.0373C21.322 12.9058 21.402 12.8743 21.5385 12.7388C22.239 12.0458 24.75 9.36427 24.75 8.55027C24.75 7.94727 24.179 7.32127 23.836 6.86427C23.6445 6.60977 23.4955 6.39777 23.289 6.16127C23.1885 6.04627 23.086 5.92277 22.993 5.80727C22.87 5.65477 22.8135 5.60327 22.688 5.46227C21.9855 4.67177 21.8465 4.58677 21.1125 3.88777C20.979 3.76027 20.8995 3.71877 20.7625 3.58777C20.547 3.38177 20.2775 3.21277 20.035 3.01527C19.2595 2.38427 17.704 1.57477 16.779 1.22127C16.1425 0.977773 15.5025 0.795273 14.796 0.654273C14.413 0.578274 14.142 0.540273 13.709 0.491273L12.5 0.405273C11.995 0.405273 10.699 0.555273 10.246 0.646273C8.641 0.967273 7.089 1.59027 5.74 2.49027C5.488 2.65827 5.195 2.82827 4.965 3.01527L3.9385 3.83877C3.8735 3.89627 3.854 3.92727 3.785 3.98527C3.6935 4.06277 3.6815 4.05577 3.588 4.13827L2.335 5.43527C1.8195 6.04877 0.25 7.80227 0.25 8.45027ZM2.578 8.45627C2.578 8.90877 2.9895 9.38377 3.3015 9.79877C3.981 10.7038 4.827 11.6728 5.702 12.3793C7.228 13.6108 8.411 14.2933 10.272 14.7748C11.578 15.1128 13.389 15.1023 14.696 14.7828C16.4165 14.3628 18.3415 13.3343 19.536 12.1718C19.645 12.0653 19.71 12.0393 19.8205 11.9298C20.388 11.3683 22.422 9.19677 22.422 8.53777C22.422 8.04927 21.959 7.54177 21.6815 7.17227C21.5265 6.96577 21.4055 6.79427 21.2385 6.60277C21.157 6.50977 21.074 6.40927 20.9985 6.31577C20.899 6.19227 20.8535 6.15077 20.7515 6.03627C20.1825 5.39627 20.07 5.32727 19.4755 4.76127C19.3675 4.65827 19.303 4.62427 19.192 4.51827C19.0175 4.35127 18.799 4.21427 18.603 4.05427C17.975 3.54327 16.715 2.88777 15.966 2.60127C15.45 2.40427 14.932 2.25627 14.3595 2.14227C14.0495 2.08077 13.83 2.04977 13.4795 2.01027L12.5 1.94077C12.091 1.94077 11.0415 2.06227 10.674 2.13577C9.3745 2.39577 8.1175 2.90027 7.025 3.62927C6.8205 3.76527 6.583 3.90327 6.397 4.05427L5.5655 4.72127C5.513 4.76827 5.497 4.79277 5.4415 4.84027C5.367 4.90277 5.3575 4.89727 5.2815 4.96377L4.267 6.01477C3.8495 6.51127 2.578 7.93127 2.578 8.45627Z"
+            fill="#E3E3E4"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M8 8.58333C8 9.76636 8.52249 10.9995 9.34742 11.8248C9.94339 12.4209 10.7382 12.8472 11.5673 13.046C12.5656 13.2857 13.5481 13.1569 14.469 12.7601C15.215 12.4388 15.8844 11.8545 16.3432 11.1929C17.2794 9.84285 17.4145 8.21534 16.7629 6.70128C16.6282 6.3881 16.3326 5.91897 16.1023 5.66231C15.3836 4.85918 14.718 4.38707 13.608 4.12063C12.6098 3.88097 11.6272 4.00972 10.7063 4.40662C10.3932 4.54132 9.92428 4.83708 9.66771 5.0674C8.86486 5.78639 8.39293 6.45227 8.12659 7.56263C8.06966 7.79975 8 8.2999 8 8.58333Z"
+            fill="#E3E3E4"
+          />
+        </svg>
+        <div class="form__auth-forgot">
+          <div>
+            <input type="checkbox" name="" id="auth__checkbox" />
+            <span class="auth__span">Запомнить меня</span>
+          </div>
+          <p class="forgot__password">Забыли пароль?</p>
+        </div>
+        <div class="form__auth-buttons">
+          <button class="btn__auth-enter" type="submit">Войти</button>
+          <button class="btn__auth-reg"><a class="btn__auth-a" href="./reg.html">Регистрация</a></button>
+        </div>
+        <div id="authMessage"></div>
+      </form>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__blocks">
+          <div class="footer__block">
+            <h1 class="footer__title">Головной офис</h1>
+            <p class="footer__item footer__email-icon mt-30">int@scadaint.ru</p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+          <div class="footer__block">
+            <h1 class="footer__title">Техническая поддержка</h1>
+            <p class="footer__item footer__email-icon mt-30">
+              support@scadaint.ru
+            </p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+          <div class="footer__block">
+            <h1 class="footer__title">Коммерческий отдел</h1>
+            <p class="footer__item footer__email-icon mt-30">
+              commerce@scadaint.ru
+            </p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__hr mt-50" />
+      <h4 class="footer__copyright">(с) 2022 Все права защищены</h4>
+    </footer>
+    <script src="./client/auth.js"></script>
+    <script src="./scripts/about.js"></script>
+  </body>
+</html>

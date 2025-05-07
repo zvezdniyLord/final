@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Integrity SCADA" name="og:title">
+    <meta content="Integrity SCADA - ИНТ" name="og:description">
+    <meta content="Integrity SCADA - ИНТ" name="description">
+    <link rel="shortcut icon" href="./media/favicon.svg">
+    <link rel="stylesheet" href="./styles/index.css">
+    <title>IntegrityServer</title>
+</head>
+<body class="body">
+    <header class="header header__block">
+        <div class="header__logo-block">
+            <a href="./index.html"><picture>
+                <source srcset="./media/logo-mobile.svg" media="(max-width: 440px)">
+                <img class="header__logo" width="41" height="41" src="./media/logo.svg" alt="Логотип">
+            </picture>
+            </a>
+            <a href="./index.html"><h1 class="header__title">ИНТ</h1></a>
+        </div>
+        <div class="header__container">
+            <div class="header__container-items">
+                <p class="header__p">
+                    <a class="header__link" href="./about.html">о нас</a>
+                </p>    
+                <div class="header__p header__p-hover-product">
+                    <button class="btn__header-p">
+                        <a class="header__link" href="./products.html">продукты</a>
+                    </button>
+                    <div class="dropdown">
+                        <div class="dropdown__content">
+                            <a href="./iserver.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityServer</p>
+                                </div>
+                            </a>
+                            <a href="./reports.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityReports</p>
+                                </div>
+                            </a>
+                            <a href="./datatransport.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityDataTransport</p>
+                                </div>
+                            </a>
+                            <a href="./historyserver.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityHistoryServer</p>
+                                </div>
+                            </a>
+                            <a href="./hmi.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityHMI</p>
+                                </div>
+                            </a>
+                            <a href="./trends.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityTrends</p>
+                                </div>
+                            </a>
+                            <a href="./alarms.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityAlarms</p>
+                                </div>
+                            </a>
+                            <a href="./webhmi.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Web Приложения</p>
+                                </div>
+                            </a>
+                            <a href="./licence.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Политика лицензирования</p>
+                                </div>
+                            </a>
+                            <a href="systemreq.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Аппаратные системные требования</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__p header__p-hover-supports">
+                    <button class="btn__header-p">
+                        <a class="header__link" href="./supports.html">поддержка</a>
+                    </button>
+                    <div class="dropdown">
+                        <div class="dropdown__content">
+                            <a href="./supports.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Техническая поддержка</p>
+                                </div>
+                            </a>
+                            <a href="./integrator.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Интеграторам</p>
+                                </div>
+                            </a>
+                            <a href="./documentation.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос документации</p>
+                                </div>
+                            </a>
+                            <a href="./demo.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос пробной версии</p>
+                                </div>
+                            </a>
+                            <a href="./price.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос ценового предложения</p>
+                                </div>
+                            </a>
+                            <a href="./education.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос на обучение</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <p class="header__p">
+                    <a class="header__link" href="./contacts.html">контакты</a>
+                </p>
+            </div>
+            <a class="tel" href="">+7 (3822) 601-000</a>
+        </div>
+        <div class="header__auth-links">
+            <picture>
+                <svg class="header__avatar" width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"  d="M14.0001 7.75C15.9723 7.75 17.5716 9.34929 17.5716 11.3214C17.5716 13.2936 15.9723 14.8929 14.0001 14.8929C12.028 14.8929 10.4287 13.2936 10.4287 11.3214C10.4287 9.34929 12.028 7.75 14.0001 7.75ZM14.0001 9.25C15.1444 9.25 16.0716 10.1771 16.0716 11.3214C16.0716 12.4657 15.1444 13.3929 14.0001 13.3929C12.8559 13.3929 11.9287 12.4657 11.9287 11.3214C11.9287 10.1771 12.8559 9.25 14.0001 9.25Z"/>
+                    <path fill-rule="evenodd"  d="M14 16.3929C18.8321 16.3929 22.75 19.895 22.75 24.2143L22.7493 24.25H20.6757C20.5721 21.3579 17.3414 18.4643 14.1071 18.4643C10.8736 18.4643 7.71929 21.3586 7.61571 24.25H5.25071L5.25 24.2143C5.25 19.895 9.16786 16.3929 14 16.3929Z"/>
+                    <path fill-rule="evenodd"  d="M14 26C20.6274 26 26 20.6274 26 14C26 7.37258 20.6274 2 14 2C7.37258 2 2 7.37258 2 14C2 20.6274 7.37258 26 14 26ZM14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28Z"/>
+                </svg>
+            </picture>
+            <a class="header__auth-link" href="./auth.html">Вход</a>
+            <span class="header__span">|</span>
+            <a class="header__auth-link" href="./reg.html">Регистрация</a>
+        </div>
+    </header>
+    <div class="mob__menu">
+        <input class="side-menu" type="checkbox" id="side-menu"/>
+        <label class="hamb" for="side-menu">
+            <span class="hamb-line"></span>
+            <div class="header__auth-link-mobile">
+                <picture>
+                    <img class="header__avatar" src="./media/auth_avatar.svg" alt="Аватарка">
+                </picture>
+                <a class="header__auth-link" href="./auth.html">Вход</a>
+                <span class="header__span">|</span>
+                <a class="header__auth-link" href="./reg.html">Регистрация</a>
+            </div>
+        </label>
+        
+        <nav class="nav">
+            <ul class="menu">
+                <div class="menu__block menu__block-product">
+                    <p class="menu__item">Продукты</p>
+                    <svg class="svg" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L10 11L2 20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="product__mobile-list mobile-list">
+                    <div class="select__ll" >
+                        <div class="ll">
+                            <a href="./iserver.html">
+                                <p class="ll-text">IntegrityServer</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./clientsecurity.html">
+                                <p class="ll-text">IntegrityClientSecurity</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./reports.html">
+                                <p class="ll-text">IntegrityReports</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./datatransport.html">
+                                <p class="ll-text">IntegrityDataTransport</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./historyserver.html">
+                                <p class="ll-text">IntegrityHistoryServer</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./hmi.html">
+                                <p class="ll-text">IntegrityHMI</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./trends.html">
+                                <p class="ll-text">IntegrityTrends</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./alarms.html">
+                                <p class="ll-text">IntegrityAlarms</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./webhmi.html">
+                                <p class="ll-text">IntegrityWebHMI</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu__block menu__block-supports">
+                    <p class="menu__item">Поддержка</p>
+                    <svg class="svg-support" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L10 11L2 20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="supports__mobile-list mobile-list">
+                    <div class="select__ll" >
+                        <div class="ll">
+                            <a href="./supports.html">
+                                <p class="ll-text">Техническая поддержка</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./integrator.html">
+                                <p class="ll-text">Интеграторам</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./documentation.html">
+                                <p class="ll-text">Запрос документации</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./demo.html">
+                                <p class="ll-text">Запрос пробной версии</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./price.html">
+                                <p class="ll-text">Запрос ценового предложения</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./education.html">
+                                <p class="ll-text">Запрос на обучение</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <li><a href="./contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main class="main__product">
+        <div class="container">
+            <div class="content">
+                <div class="list__products left__block">
+                    <button class="btn__list__products-active">Состав Integrity SCADA</button>
+                    <img class="btn__list-selector" src="./media/arrow-down.svg" alt="стрелка">
+                    <div class="list__products-blocks">
+                        <div class="list__products-items list__products-item-active">
+                            <a href="./iserver.html"><p class="list__products-item"><span class="list__product-border">IntegrityServer</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./ienvcontrol.html"><p class="list__products-item"><span class="list__product-border">IntegrityEnvironmentControl</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./clientsecurity.html"><p class="list__products-item"><span class="list__product-border">IntegrityClientSecurity</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./reports.html"><p class="list__products-item"><span class="list__product-border">IntegrityReports</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="datatransport.html"><p class="list__products-item"><span class="list__product-border">IntegrityDataTransport</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./historyserver.html"><p class="list__products-item"><span class="list__product-border">IntegrityHistoryServer</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./hmi.html"><p class="list__products-item"><span class="list__product-border">IntegrityHMI</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./trends.html"><p class="list__products-item"><span class="list__product-border">IntegrityTrends</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./alarms.html"><p class="list__products-item"><span class="list__product-border">IntegrityAlarms</span></p></a>
+                        </div>
+                        <div class="list__products-items">
+                            <a href="./webhmi.html"><p class="list__products-item"><span class="list__product-border">Web Приложения</span></p></a>
+                        </div>
+                    </div>
+                    <a href="./licence.html"><button class="btn__list__products">Политика лицензирования</button></a>
+                    <a href="./systemreq.html"><button style="height: 70px;" class="btn__list__products mt-20">Аппаратные системные требования</button></a>
+                </div>
+                <div class="text__products right__block">
+                    <h1 class="text__products__title title__blue-fz30">IntegrityServer — сервер ввода/вывода оперативных данных</h1>
+                    <h2 class="text__products__title title__blue-fz24 mt-50 ">Назначение</h2>
+                    <p class="content__text mt-20">Сбор данных по промышленным протоколам, математическая предобработка данных, генерация сообщений о событиях и авариях, предоставление данных сторонним системам и клиентским приложениям.</p>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Основные функции</h2>
+                    <ul>
+                        <li class="content__text marker mt-20">непрерывный контроль параметров технологического процесса в реальном времени и оповещение об отклонениях от нормального хода процесса;</li>
+                        <li class="content__text marker">передача команд телеуправления и телерегулирования системам автоматики и телемеханики;</li>
+                        <li class="content__text marker">предоставление оперативных значений технологических параметров для мониторинга технологического процесса, анализа работы оборудования.</li>
+                    </ul>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Особенности</h2>
+                    <ul>
+                        <li class="content__text marker mt-20">высокопроизводительное ядро, подтвержденная стабильность 24/7;</li>
+                        <li class="content__text marker">оптимизация для использования в устройствах с ограниченными ресурсами;</li>
+                        <li class="content__text marker">оптимизация для обмена данными по спецификации OPC UA;</li>
+                        <li class="content__text marker">возможность работы без графического интерфейса на серверных ОС семейства Linux;</li>
+                        <li class="content__text marker">резервирование серверов данных с минимизацией трафика в рамках резервной пары.</li>
+                    </ul>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Integrity Server при построении различных систем автоматизации</h2>
+                    <ul>
+                        <li class="content__text marker mt-20">Поддержка наиболее распространенных стандартных протоколов обмена данными: ModBus TCP/IP, IEC 60870-5 (101, 104), SNMP и других, позволяющая опрашивать устройства различных производителей систем управления технологическими процессами;</li>
+                        <li class="content__text marker">Сбор данных одним сервером по нескольким протоколам - построение гибких систем взаимодействия между оборудованием, системами автоматизации;</li>
+                        <li class="content__text marker">Полная поддержка спецификации OPC UA (сервер и клиент) обеспечивает возможность обмена данными и интеграции с различными сторонними системами;</li>
+                        <li class="content__text marker">Опрос резервируемых устройств и использование резервируемых каналов связи.</li>
+                    </ul>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Вычисления в рамках сервера</h2>
+                    <ul>
+                        <li class="content__text marker mt-20">расширенный набор функций логической и математической обработки данных позволяет решать сложные вычислительные задачи.</li>
+                        <li class="content__text marker">встроенные функции пересчета физических величин в инженерные по различным зависимостям позволяют осуществлять предобработку значений параметров;</li>
+                        <li class="content__text marker">встроенная проверка синтаксиса как на этапе разработки, так и на этапе выполнения функция, повлекшая зацикливание или ошибку, исключается из обработки модулем.</li>
+                    </ul>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Горячее резервирование</h2>
+                    <p class="content__text mt-20">В случае возникновения аварийных ситуаций предусмотрены автоматические алгоритмы восстановления работоспособности:</p>
+                    <ul>
+                        <li class="content__text marker mt-20">переход с основного сервера на резервный в случае нештатной ситуации;</li>
+                        <li class="content__text marker">автоматический перезапуск сбойного сервера;</li>
+                        <li class="content__text marker">уведомление об аварии.</li>
+                    </ul>
+                    <p class="content__text">Подсистема горячего резервирования гарантирует минимально возможную задержку при переходе между серверами. Это позволяет максимально сократить время отсутствия функции управления объектами;</p>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Удобство конфигурирования сервера ввода/вывода</h2>
+                    <ul>
+                        <li class="content__text marker mt-20">Визуальные средства конфигурирования и администрирования системы позволяют настроить модули и сигналы сервера, описать логические процедуры и функции, настроить пересчет значений, задать адреса для сигналов, настроить параметры сохранения значений сигналов в архив и пр.;</li>
+                        <li class="content__text marker">Настройка всех компонентов вплоть до настройки параметров устройств сбора данных производится из программы конфигуратора</li>
+                    </ul>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Конфигурация сообщений</h2>
+                    <ul>
+                        <li class="content__text marker mt-20">Контроль изменений значений сигналов на соответствие нормативным или пороговым величинам и уведомление пользователей о наступившем событии или тревоге;</li>
+                        <li class="content__text marker">Поддержка спецификации OPC UA AE позволяет осуществлять интеграцию с другими системами.</li>
+                    </ul>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">Система самодиагностики</h2>
+                    <ul>
+                        <li class="content__text marker mt-20">модуль статистики сервера позволяет получать данные о работе сервера в количественном выражении;</li>
+                        <li class="content__text marker">самодиагностика сервера доступна по протоколу OPC UA.</li>
+                        <li class="content__text marker">развитая система логирования: логирование осуществляется в свои файлы и в журналы ОС.</li>
+                        <li class="content__text marker">настройки флагов по логированию позволяют в необходимых ситуациях получать максимум информации от системы, не мешая ее работе в штатном режиме;</li>
+                        <li class="content__text marker">гибкие настройки фильтрации и сортировки журнала событий, что позволяет в максимально сжатые сроки находить корень проблемы.</li>
+                    </ul>
+                    <h2 class="text__products__title title__blue-fz24 mt-50">S7OPCUAGateway</h2>
+                    <p class="content__text mt-20">Шлюз предоставления данных опроса контроллера Siemens по протоколу OPC UA</p>
+                    <ul>
+                        <li class="content__text marker mt-20">опрос контроллера по протоколу S7; </li>
+                        <li class="content__text marker">возможность отправки команд управления; возможность конфигурировании я структур; </li>
+                        <li class="content__text marker">конфигурация хранится в открытом виде (формат XML); </li>
+                        <li class="content__text marker">предоставление данных и управление по протоколу OPC UA;</li>
+                    </ul>
+                    <section class="form__main">
+                        <div class="container">
+                            <form id="form" class="form__main-new-view form__main-block form" method="POST" action="./php.php">
+                                <h2 class="form__product-title">Хотите получить доступ к онлайн-версии, бесплатному
+                                    дистрибутиву для тестирования платформы
+                                    или задать вопрос?
+                                </h2>
+                                <h3 class="form__product-subtitle">Заполните форму и получите доступ к приложению.</h3>
+                                <p class="form__product-warning">Пожалуйста, заполните все обязательные поля.</p>
+                                <input name="name" class="form__main-fio" type="text" placeholder="ФИО">
+                                <div class="form__inputs">
+                                    <div class="form__left-input">
+                                        <label for="company"><input id="company" name="company" class="content__input-small" type="text" placeholder="Компания"></label>
+                                        <div class="div__input-select">
+                                            <select name="select" class="content__input-small content__input-select" name="target__request" id="product__select">
+                                                <option disabled value="">Цель запроса</option>
+                                                <option class="option" value="Техническая поддержка">Техническая поддержка</option>
+                                                <option class="option" value="Интеграторам">Интеграторам</option>
+                                                <option class="option" value="Запрос документации">Запрос документации</option>
+                                                <option selected class="option" value="Запрос пробной версии">Запрос пробной версии</option>
+                                                <option class="option" value="Запрос ценового предложения">Запрос ценового предложения</option>
+                                                <option class="option" value="Запрос на обучение">Запрос на обучение</option>
+                                            </select>
+                                        </div>
+                                        <!--<input class="content__input-small" type="text" placeholder="Цель запроса">-->
+                                    </div>
+                                    <div class="form__right-input">
+                                        <input name="email" class="content__input-small" type="email" placeholder="Электронная почта">
+                                        <input pattern="^((\+7|7|8)+([0-9]){10})$" name="tel" class="content__input-small" type="tel" placeholder="Телефон">
+                                    </div>
+                                </div>
+                                <input name="message" class="product__input" type="text" placeholder="Сообщение">
+                                <div class="form__captcha">
+                                    <h3 class="form__captcha-target" data-value="8">Integrity SCADA</h3>
+                                    <p class="form__captcha-text">Укажите букву, подсвеченную красным цветом в названии Integrity SCADA</p>
+                                    <input maxlength="1" class="form__captcha-input" required type="text" placeholder="Введите букву">
+                                    <span class="captcha__warning form__product-warning">Не совпадает</span>
+                                </div>
+                                <div class="btn__submit-main">
+                                    <p class="form__text"><span class="form__blue">Отправляя запрос, Вы даёте согласие на обработку</span> <br> <span class="warning">ПЕРСОНАЛЬНЫХ ДАННЫХ</span></p>
+                                    <input class="btn__product-submit" type="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__blocks">
+                <div class="footer__block">
+                    <h1 class="footer__title">Головной офис</h1>
+                    <p class="footer__item footer__email-icon mt-30">int@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+                </div>
+                <div class="footer__block">
+                    <h1 class="footer__title">Техническая поддержка</h1>
+                    <p class="footer__item footer__email-icon mt-30">support@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+                </div>
+                <div class="footer__block">
+                    <h1 class="footer__title">Коммерческий отдел</h1>
+                    <p class="footer__item footer__email-icon mt-30">commerce@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+                </div>
+            </div>
+        </div>
+        <hr class="footer__hr mt-50">
+        <h4 class="footer__copyright">(с) 2022 Все права защищены </h4>
+    </footer>
+<script src="./scripts/scadaList.js"></script>
+<script src="./scripts/about.js"></script>
+<script src="./scripts/mail.js"></script>
+</body>
+</html>

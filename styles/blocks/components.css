@@ -1,0 +1,341 @@
+.form-account {
+    max-width: 700px;
+    width: 700px;
+    margin-top: 35px;
+}
+
+.form-account-input {
+    max-width: 700px;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.select-requests {
+    display: flex;
+}
+
+.video-email-controls {
+    max-width: 540px;
+    display: flex;
+}
+
+.btn-select-requests {
+    width: 200px;
+    max-width: 210px;
+    height: 32px;
+    background-color: white;
+    font-size: 16px;
+    line-height: 15px;
+    border: 2px solid rgba(227, 227, 228, 1);
+    margin-left: 3px;
+
+}
+
+.email-blocks {
+    max-width: 840px;
+    width: 840px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    padding-bottom: 4rem;
+}
+
+.email-block {
+    max-width: 100%;
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 2px solid rgba(236, 239, 244, 1);
+    border-radius: 5px;
+    height: 80px;
+    align-items: center;
+    color: var(--color-text-grey);
+    font-size: 16px;
+    line-height: 16px;
+    flex-wrap: wrap;
+}
+
+.email-img-type {
+    margin-left: 30px;
+}
+
+.btn-email-del {
+    background-color: transparent;
+    margin-right: 36px;
+    height: 100%;
+    width: 80px;
+    max-width: 100px;
+}
+
+.email-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #C7D0E2;
+    cursor: pointer;
+}
+
+.email-size {
+    margin-top: 10px;
+}
+
+.btn-video-open {
+    font-size: 36px;
+    background-color: transparent;
+    width: 60px;
+    height: 100%;
+    color: var(--color-btn-blue);
+}
+
+.btn-video-close {
+    font-size: 36px;
+    background-color: transparent;
+    width: 60px;
+    height: 100%;
+    color: var(--color-btn-blue);
+    display: none;
+}
+
+.video-block-top {
+    max-width: 100%;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 2px solid rgba(236, 239, 244, 1);
+    border-radius: 5px;
+    height: 80px;
+    align-items: center;
+    color: var(--color-text-grey);
+    font-size: 16px;
+    line-height: 16px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.video-block-bottom {
+    height: 180px;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 16px;
+    border-top: 2px solid var(--color-auth-bg-blue);
+    display: none;
+}
+
+.btn-watch {
+    width: 155px;
+    height: 42px;
+    color: #fff;
+    background-color: var(--color-btn-blue);
+    border-radius: 5px;
+    margin: 30px 1rem 30px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.video-watch-desc {
+    margin: 30px 40px 0 30px;
+    max-width: 770px;
+}
+
+.keys-blocks {
+    max-width: 840px;
+    width: 840px;
+    margin-top: 40px;
+    margin-bottom: 1rem;
+}
+
+.keys-title {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 700;
+    color: #373D40;
+}
+
+.keys-block {
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+    min-height: 50px;
+    padding: 15px;
+    border: 2px solid var(--fone);
+    border-radius: 5px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.key-date {
+    color: var(--color-title-blue);
+    letter-spacing: 10%;
+    font-size: 14px;
+    line-height: 21px;
+    width: 83px;
+    text-align: center;
+}
+
+.btn-key-status {
+    height: 100%;
+    background-color: transparent;
+    color: var(--color-title-blue);
+    font-size: 14px;
+    line-height: 21px;
+    width: 88px;
+}
+
+.key-nonactive-status {
+    color: var(--color-primary-red);
+}
+
+.key {
+    max-width: 260px;
+    width: 258px;
+    font-size: 14px;
+}
+
+.key-number {
+    width: 5px;
+}
+
+.video-popup {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.video {
+    margin: auto;
+    max-width: 1300px;
+}
+
+.video-close {
+    width: 30px;
+    height: 30px;
+    background-color: #34547A;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    position: absolute;
+    right: 250px;
+    top: 100px;
+}
+
+.select-title {
+    margin-right: 0 !important;
+    width: 100%;
+    text-align: center;
+}
+
+.keys-block-top {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    max-width: 100%;
+}
+
+.keys-block-bottom {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    max-width: 100%;
+}
+
+.lk-input {
+    padding: 1rem 0 1rem 1rem;
+    font-size: 16px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 460px) {
+    .form-account {
+        max-width: 100%;
+    }
+
+    .email-blocks {
+        max-width: 100%;
+        padding-bottom: 2rem;
+    }
+
+    .email-block {
+        flex-wrap: nowrap;
+        font-size: 14px;
+    }
+
+    .email-img-type {
+        width: 15px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .btn-email-del {
+        margin-right: 15px;
+    }
+
+    .btn-select-requests {
+        max-width: 97px;
+        margin-top: 1rem;
+    }
+
+    .select-requests {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .keys-blocks {
+        max-width: 100%;
+    }
+
+    .keys-block {
+        width: 100%;
+        height: 100px;
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+    }
+
+    .keys-title {
+        text-align: center;
+    }
+
+    .keys-block-bottom {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .key {
+        font-size: 13px;
+        font-weight: 500;
+        margin-left: 0px;
+        width: 300px;
+    }
+
+    .video {
+        max-width: 100%;
+    }
+
+    .video-close {
+        top: 32%;
+        right: 20px;
+    }
+}

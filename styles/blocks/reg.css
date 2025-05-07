@@ -1,0 +1,255 @@
+/* Основные стили */
+.reg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+  }
+
+  .reg__block {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .reg__block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .reg__title {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .reg__subtitle {
+    color: #7f8c8d;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+
+  /* Стили для инпутов */
+  .input-wrapper {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  .reg__input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+  }
+
+  .reg__input:focus {
+    outline: none;
+    background-color: white;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+
+  .input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3498db;
+    transition: width 0.3s ease;
+  }
+
+  .reg__input:focus ~ .input-border {
+    width: 100%;
+  }
+
+  /* Индикатор сложности пароля */
+  .password-strength {
+    margin-top: 5px;
+    height: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  .strength-bar {
+    height: 3px;
+    border-radius: 3px;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+
+  .strength-text {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #7f8c8d;
+  }
+
+  /* Стили для кнопки */
+  .btn__product-submit {
+    position: relative;
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .btn__product-submit:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+  }
+
+  .btn__product-submit:active {
+    transform: translateY(0);
+  }
+
+  .btn-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .btn-loader.hidden {
+    opacity: 1;
+  }
+
+  .loader-circle {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Сообщения */
+  .message-box {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+
+  .message-box.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .message-box.success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  .message-box.error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  /* Анимация появления формы */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reg__block {
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+.reg__submit-block {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.reg__form-fx {
+    max-width: 720px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form__text-reg {
+    margin-left: 1rem;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) {
+    .reg {
+        min-height: 850px;
+    }
+
+    .form__text-reg {
+        text-align: center;
+    }
+
+    .reg__block {
+        max-width: 100%;
+        height: 100%;
+    }
+
+    .reg__form {
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .reg__form-fx {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn__product-submit {
+        margin-bottom: 2rem;
+    }
+
+    .form__text {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .reg__input {
+        margin-left: 0;
+    }
+
+    .reg__submit-block {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

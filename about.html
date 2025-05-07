@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Integrity SCADA" name="og:title">
+    <meta content="Integrity SCADA - ИНТ" name="og:description">
+    <meta content="Integrity SCADA - ИНТ" name="description">
+    <link rel="shortcut icon" href="./media/favicon.svg">
+    <link rel="stylesheet" href="./styles/index.css">
+    <title>О нас</title>
+</head>
+<body>
+    <header class="header header__block">
+        <div class="header__logo-block">
+            <a href="./index.html"><picture>
+                <picture>
+                    <source srcset="./media/logo-mobile.svg" media="(max-width: 440px)">
+                    <img class="header__logo" width="41" height="41" src="./media/logo.svg" alt="Логотип">
+                </picture>
+            </picture>
+            </a>
+            <a href="./index.html"><h1 class="header__title">ИНТ</h1></a>
+        </div>
+        <div class="header__container">
+            <div class="header__container-items">
+                <p class="header__p">
+                    <a class="header__link" href="./about.html">о нас</a>
+                </p>    
+                <div class="header__p header__p-hover-product">
+                    <button class="btn__header-p">
+                        <a class="header__link" href="./products.html">продукты</a>
+                    </button>
+                    <div class="dropdown">
+                        <div class="dropdown__content">
+                            <a href="./iserver.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityServer</p>
+                                </div>
+                            </a>
+                            <a href="./reports.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityReports</p>
+                                </div>
+                            </a>
+                            <a href="./datatransport.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityDataTransport</p>
+                                </div>
+                            </a>
+                            <a href="./historyserver.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityHistoryServer</p>
+                                </div>
+                            </a>
+                            <a href="./hmi.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityHMI</p>
+                                </div>
+                            </a>
+                            <a href="./trends.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityTrends</p>
+                                </div>
+                            </a>
+                            <a href="./alarms.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityAlarms</p>
+                                </div>
+                            </a>
+                            <a href="./webhmi.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Web Приложения</p>
+                                </div>
+                            </a>
+                            <a href="./licence.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Политика лицензирования</p>
+                                </div>
+                            </a>
+                            <a href="systemreq.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Аппаратные системные требования</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__p header__p-hover-supports">
+                    <button class="btn__header-p">
+                        <a class="header__link" href="./supports.html">поддержка</a>
+                    </button>
+                    <div class="dropdown">
+                        <div class="dropdown__content">
+                            <a href="./supports.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Техническая поддержка</p>
+                                </div>
+                            </a>
+                            <a href="./integrator.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Интеграторам</p>
+                                </div>
+                            </a>
+                            <a href="./documentation.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос документации</p>
+                                </div>
+                            </a>
+                            <a href="./demo.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос пробной версии</p>
+                                </div>
+                            </a>
+                            <a href="./price.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос ценового предложения</p>
+                                </div>
+                            </a>
+                            <a href="./education.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос на обучение</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <p class="header__p">
+                    <a class="header__link" href="./contacts.html">контакты</a>
+                </p>
+            </div>
+            <a class="tel" href="">+7 (3822) 601-000</a>
+        </div>
+        <div class="header__auth-links">
+            <picture>
+                <svg class="header__avatar" width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"  d="M14.0001 7.75C15.9723 7.75 17.5716 9.34929 17.5716 11.3214C17.5716 13.2936 15.9723 14.8929 14.0001 14.8929C12.028 14.8929 10.4287 13.2936 10.4287 11.3214C10.4287 9.34929 12.028 7.75 14.0001 7.75ZM14.0001 9.25C15.1444 9.25 16.0716 10.1771 16.0716 11.3214C16.0716 12.4657 15.1444 13.3929 14.0001 13.3929C12.8559 13.3929 11.9287 12.4657 11.9287 11.3214C11.9287 10.1771 12.8559 9.25 14.0001 9.25Z"/>
+                    <path fill-rule="evenodd"  d="M14 16.3929C18.8321 16.3929 22.75 19.895 22.75 24.2143L22.7493 24.25H20.6757C20.5721 21.3579 17.3414 18.4643 14.1071 18.4643C10.8736 18.4643 7.71929 21.3586 7.61571 24.25H5.25071L5.25 24.2143C5.25 19.895 9.16786 16.3929 14 16.3929Z"/>
+                    <path fill-rule="evenodd"  d="M14 26C20.6274 26 26 20.6274 26 14C26 7.37258 20.6274 2 14 2C7.37258 2 2 7.37258 2 14C2 20.6274 7.37258 26 14 26ZM14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28Z"/>
+                </svg>
+            </picture>
+            <a class="header__auth-link" href="./auth.html">Вход</a>
+            <span class="header__span">|</span>
+            <a class="header__auth-link" href="./reg.html">Регистрация</a>
+        </div>
+    </header>
+    <div class="mob__menu">
+        <input class="side-menu" type="checkbox" id="side-menu"/>
+        <label class="hamb" for="side-menu">
+            <span class="hamb-line"></span>
+            <div class="header__auth-link-mobile">
+                <picture>
+                    <img class="header__avatar" src="./media/auth_avatar.svg" alt="Аватарка">
+                </picture>
+                <a class="header__auth-link" href="./auth.html">Вход</a>
+                <span class="header__span">|</span>
+                <a class="header__auth-link" href="./reg.html">Регистрация</a>
+            </div>
+        </label>
+        
+        <nav class="nav">
+            <ul class="menu">
+                <div class="menu__block menu__block-product">
+                    <p class="menu__item">Продукты</p>
+                    <svg class="svg" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L10 11L2 20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="product__mobile-list mobile-list">
+                    <div class="select__ll" >
+                        <div class="ll">
+                            <a href="./iserver.html">
+                                <p class="ll-text">IntegrityServer</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./reports.html">
+                                <p class="ll-text">IntegrityReports</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./datatransport.html">
+                                <p class="ll-text">IntegrityDataTransport</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./historyserver.html">
+                                <p class="ll-text">IntegrityHistoryServer</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./hmi.html">
+                                <p class="ll-text">IntegrityHMI</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./trends.html">
+                                <p class="ll-text">IntegrityTrends</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./alarms.html">
+                                <p class="ll-text">IntegrityAlarms</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./webhmi.html">
+                                <p class="ll-text">IntegrityWebHMI</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu__block menu__block-supports">
+                    <p class="menu__item">Поддержка</p>
+                    <svg class="svg-support" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L10 11L2 20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="supports__mobile-list mobile-list">
+                    <div class="select__ll" >
+                        <div class="ll">
+                            <a href="./supports.html">
+                                <p class="ll-text">Техническая поддержка</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./integrator.html">
+                                <p class="ll-text">Интеграторам</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./documentation.html">
+                                <p class="ll-text">Запрос документации</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./demo.html">
+                                <p class="ll-text">Запрос пробной версии</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./price.html">
+                                <p class="ll-text">Запрос ценового предложения</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./education.html">
+                                <p class="ll-text">Запрос на обучение</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <li><a href="./contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main>
+        <section class="future">
+            <div class="container">
+                <div class="future__block">
+                    <p class="future__title">Определяем будущее</p>
+                    <p class="future__subtitle">автоматизации процессов</p>
+                    <p class="future__subtitle-two">Делаем процесс контроля и управления качественным и доступным </p>
+                </div>
+            </div>
+        </section>
+        <section class="about__text">
+            <div class="container">
+                <div class="about__text-block">
+                    <p>ООО ИНТ аккредитованная IT компания, основным направлением которой является разработка базового программного обеспечения для автоматизации различных отраслей промышленности. </p>
+                    <p class="mt-20">Мы разрабатываем одно из лучших отечественных программных решений в области SCADA систем.
+                        Компания имеет все атрибуты и роли для правильной организации процесса разработки программного обеспечения. Штат включает в себя системных аналитиков, программистов, специалистов по тестированию, специалистов по документированию, специалистов по технической поддержке.
+                    </p>
+                    <p class="mt-20">ООО ИНТ, является частью компании ЭлеСи – более 30 лет изобретает, разрабатывает и производит продукцию и системные решения для автоматизации в соответствии с потребностями клиентов. Персонал компании насчитывает более 600 сотрудников.</p>
+                    <p class="mt-20">Мы неукоснительно следуем миссии компании:
+                        “Используя корпоративный интеллект, знания и новейшие технологии, мы создаем и непрерывно совершенствуем мир технических систем, несем радость творчества и социальный оптимизм их создателям, эффективность и комфорт потребителям, содействуем техническому прогрессу, накоплению общественного блага, вносим вклад в развитие России и ее интеграцию в мировое сообщество.”</p>   
+                </div>
+            </div>
+        </section>
+        <section class="description">
+            <div class="description__block">
+                <div class="description__width">
+                    <h2 class="description__text description-left">Более 30 лет развития и инноваций,</h2>
+                    <h2 class="description__text description-right">сосредоточенных на потребностях клиентов</h2>
+                </div>
+            </div>
+        </section>
+        <section class="flex">
+            <div class="flex-blocks">
+                <div class="flex-left" >
+                    <div class="flex-left-block">
+                        <div class="fl-block 1">
+                            <div class="fl-block-empty"></div>
+                            <p class="timeline__year fl-1">1990</p>
+                            <img width="108" height="38" src="./media/timeline-right.png" alt="">
+                            <div class="fl-block-text">
+                                <p  class="timeline__text">Год основания компании</p>
+                            </div>  
+                        </div>
+                        <div class="fl-block 2">
+                            <div class="fl-block-text">
+                                <p  class="timeline__text">Проект автоматизации Братской ГЭС </p>
+                                <span class="timeline-span">1200 сигналов, свой контроллер</span>  
+                            </div>  
+                            <svg width="108" height="38" viewBox="0 0 114 44" fill="#892629" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10325)">
+                                <circle cx="103" cy="18" r="3" transform="rotate(-180 103 18)" fill="#892629"/>
+                                <path d="M103 18L13 18" stroke="#892629" stroke-width="2"/>
+                                <circle cx="13" cy="18" r="5" transform="rotate(-180 13 18)" fill="#892629"/>
+                                <circle cx="103" cy="7" r="3" transform="rotate(-180 103 7)" fill="#892629"/>
+                                <circle cx="103" cy="29" r="3" transform="rotate(-180 103 29)" fill="#892629"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10325" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10325"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10325"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10325" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>                                
+                            <p class="timeline__year fl-2">1995</p>
+                            <div class="fl-block-empty"></div>
+                        </div>
+                        <div class="fl-block 3">
+                            <div class="fl-block-empty"></div>
+                            <p class="timeline__year fl-3">2000</p>
+                            <svg width="108" height="38" viewBox="0 0 114 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10315)">
+                                <circle cx="11" cy="18" r="3" fill="#7D2930"/>
+                                <circle cx="11" cy="29" r="3" fill="#7D2930"/>
+                                <circle cx="11" cy="7" r="3" fill="#7D2930"/>
+                                <path d="M11 18H101" stroke="#7D2930" stroke-width="2"/>
+                                <circle cx="101" cy="18" r="5" transform="rotate(-180 101 18)" fill="#7D2930"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10315" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10315"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10315"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10315" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+                                
+                            <div class="fl-block-text">
+                                <p  class="timeline__text" style="text-align: left;">СДКУ Транснефть</p>
+                                <span class="timeline-span">387 - клиентов     25 - районных ДП
+                                    11 - территориальных ДП    
+                                    2x106 - сигналов в системе
+                                </span>
+                            </div>  
+                        </div>
+                        <div class="fl-block 4">
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">
+                                    Разработан собственный
+                                    программный продукт
+                                    сервер ввода/вывода Восток <br> 
+                                    Взят курс на разработку
+                                    собственной СКАДА системы</p>
+                            </div>  
+                            <svg width="108" height="38" fill="#004178" viewBox="0 0 114 44" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10325)">
+                                <circle cx="103" cy="18" r="3" transform="rotate(-180 103 18)" fill="#632E3F"/>
+                                <path d="M103 18L13 18" stroke="#632E3F" stroke-width="2"/>
+                                <circle cx="13" cy="18" r="5" transform="rotate(-180 13 18)" fill="#632E3F"/>
+                                <circle cx="103" cy="7" r="3" transform="rotate(-180 103 7)" fill="#632E3F"/>
+                                <circle cx="103" cy="29" r="3" transform="rotate(-180 103 29)" fill="#632E3F"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10325" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10325"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10325"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10325" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+                            <p class="timeline__year fl-4">2001</p>
+                            <div class="fl-block-empty"></div>
+                        </div>
+                        <div class="fl-block 5">
+                            <div class="fl-block-empty"></div>
+                            <p class="timeline__year fl-5">2005</p>
+                            <svg width="108" height="38" viewBox="0 0 114 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10315)">
+                                <circle cx="11" cy="18" r="3" fill="#563046"/>
+                                <circle cx="11" cy="29" r="3" fill="#563046"/>
+                                <circle cx="11" cy="7" r="3" fill="#563046"/>
+                                <path d="M11 18H101" stroke="#563046" stroke-width="2"/>
+                                <circle cx="101" cy="18" r="5" transform="rotate(-180 101 18)" fill="#563046"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10315" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10315"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10315"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10315" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>                                
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">Проект Север</p>
+                                <span class="timeline-span">108 - клиентов 7 - перекачивающих станций
+                                    0,4х10^6
+                                </span>
+                            </div>  
+                        </div>
+                        <div class="fl-block 6">
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">Представлена СКАДА
+                                    системы InfinitySuite
+                                    <br>
+                                   Взят курс на расширение
+                                   функциональных возможностей 
+                                </p>
+                            </div>  
+                            <svg width="108" height="38" fill="#004178" viewBox="0 0 114 44" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10325)">
+                                <circle cx="103" cy="18" r="3" transform="rotate(-180 103 18)" fill="#4A334E"/>
+                                <path d="M103 18L13 18" stroke="#4A334E" stroke-width="2"/>
+                                <circle cx="13" cy="18" r="5" transform="rotate(-180 13 18)" fill="#4A334E"/>
+                                <circle cx="103" cy="7" r="3" transform="rotate(-180 103 7)" fill="#4A334E"/>
+                                <circle cx="103" cy="29" r="3" transform="rotate(-180 103 29)" fill="#4A334E"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10325" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10325"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10325"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10325" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+                            <p class="timeline__year fl-6">2006</p>
+                            <div class="fl-block-empty"></div>
+                        </div>
+                        <div class="fl-block 7">
+                            <div class="fl-block-empty"></div>
+                            <p class="timeline__year fl-7">2010</p>
+                            <svg width="108" height="38" viewBox="0 0 114 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10315)">
+                                <circle cx="11" cy="18" r="3" fill="#48334F"/>
+                                <circle cx="11" cy="29" r="3" fill="#48334F"/>
+                                <circle cx="11" cy="7" r="3" fill="#48334F"/>
+                                <path d="M11 18H101" stroke="#48334F" stroke-width="2"/>
+                                <circle cx="101" cy="18" r="5" transform="rotate(-180 101 18)" fill="#48334F"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10315" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10315"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10315"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10315" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>                                
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">ЕСУ ТС ВСТО</p>
+                                <span class="timeline-span">340 - контейнеров ТМ и связи <br>
+                                    21 - перекачивающая станция
+                                    1х10^6 - сигналов в системе
+                                </span>
+                            </div>  
+                        </div>
+                        <div class="fl-block 8">
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">Максимум идей сосредоточено в
+                                    продукте SCADA Infinity
+                                    <br>
+                                   Взят курс на разработку
+                                   кросплатформенного решения 
+                                </p>
+                            </div>  
+                            <svg width="108" height="38" fill="#004178" viewBox="0 0 114 44" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10325)">
+                                <circle cx="103" cy="18" r="3" transform="rotate(-180 103 18)" fill="#3C3556"/>
+                                <path d="M103 18L13 18" stroke="#3C3556" stroke-width="2"/>
+                                <circle cx="13" cy="18" r="5" transform="rotate(-180 13 18)" fill="#3C3556"/>
+                                <circle cx="103" cy="7" r="3" transform="rotate(-180 103 7)" fill="#3C3556"/>
+                                <circle cx="103" cy="29" r="3" transform="rotate(-180 103 29)" fill="#3C3556"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10325" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10325"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10325"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10325" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+                            <p class="timeline__year fl-8">2014</p>
+                            <div class="fl-block-empty"></div>
+                        </div>
+                        <div class="fl-block 9">
+                            <div class="fl-block-empty"></div>
+                            <p class="timeline__year fl-9">2015</p>
+                            <svg width="108" height="38" viewBox="0 0 114 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10315)">
+                                <circle cx="11" cy="18" r="3" fill="#2D385E"/>
+                                <circle cx="11" cy="29" r="3" fill="#2D385E"/>
+                                <circle cx="11" cy="7" r="3" fill="#2D385E"/>
+                                <path d="M11 18H101" stroke="#2D385E" stroke-width="2"/>
+                                <circle cx="101" cy="18" r="5" transform="rotate(-180 101 18)" fill="#2D385E"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10315" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10315"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10315"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10315" result="shape"/>
+                                </filter>
+                                </defs>
+                            </svg>                                
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">АСДУ Московского Метрополитена</p>
+                                <span class="timeline-span">
+                                    30 - станций 2 - электродепо 89 - систем
+                                </span>
+                                <p style="text-align: left;" class="timeline__text">Единая диспетчерская СУЭК-Кузбас</p>
+                                <span class="timeline-span">
+                                    8 - шахт 0,2х10^6 - сигналов в системе
+                                </span>
+                            </div>  
+                        </div>
+                        <div class="fl-block 10">
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">Представлена кроссплатформенная
+                                    СКАДА система Integrity SCADA
+                                </p>
+                            </div>  
+                            <svg width="108" height="38" fill="#163D6B" viewBox="0 0 114 44" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10325)">
+                                <circle cx="103" cy="18" r="3" transform="rotate(-180 103 18)" fill="#163D6B"/>
+                                <path d="M103 18L13 18" stroke="#163D6B" stroke-width="2"/>
+                                <circle cx="13" cy="18" r="5" transform="rotate(-180 13 18)" fill="#163D6B"/>
+                                <circle cx="103" cy="7" r="3" transform="rotate(-180 103 7)" fill="#163D6B"/>
+                                <circle cx="103" cy="29" r="3" transform="rotate(-180 103 29)" fill="#163D6B"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10325" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10325"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10325"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10325" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+                            <p class="timeline__year fl-10">2019</p>
+                            <div class="fl-block-empty"></div>
+                        </div>
+                        <div class="fl-block 11">
+                            <div class="fl-block-empty"></div>
+                            <p class="timeline__year fl-11">2021</p>
+                            <svg width="108" height="38" viewBox="0 0 114 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10315)">
+                                <circle cx="11" cy="18" r="3" fill="#004178"/>
+                                <circle cx="11" cy="29" r="3" fill="#004178"/>
+                                <circle cx="11" cy="7" r="3" fill="#004178"/>
+                                <path d="M11 18H101" stroke="#004178" stroke-width="2"/>
+                                <circle cx="101" cy="18" r="5" transform="rotate(-180 101 18)" fill="#004178"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10315" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10315"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10315"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10315" result="shape"/>
+                                </filter>
+                                </defs>
+                            </svg>                                
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">СОДУ Сила Сибири</p>
+                                <span class="timeline-span">
+                                    5 - производственных управлений
+                                    8 - компрессорных станций
+                                    150 - контрольных пунктов
+                                    0,7х10^6 - сигналов в системе
+                                </span>
+                            </div>  
+                        </div>
+                        <div class="fl-block 12">
+                            <div class="fl-block-text">
+                                <p style="text-align: left;" class="timeline__text">Повсеместное внедрение
+                                    проектов автоматизациии с
+                                     использованием Integrity SCADA
+                                </p>
+                            </div>  
+                            <svg width="108" height="38" fill="#004178" viewBox="0 0 114 44" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_d_6660_10325)">
+                                <circle cx="103" cy="18" r="3" transform="rotate(-180 103 18)" fill="#004578"/>
+                                <path d="M103 18L13 18" stroke="#004578" stroke-width="2"/>
+                                <circle cx="13" cy="18" r="5" transform="rotate(-180 13 18)" fill="#004578"/>
+                                <circle cx="103" cy="7" r="3" transform="rotate(-180 103 7)" fill="#004578"/>
+                                <circle cx="103" cy="29" r="3" transform="rotate(-180 103 29)" fill="#004578"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_d_6660_10325" x="0" y="0" width="114" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_6660_10325"/>
+                                <feOffset dy="4"/>
+                                <feGaussianBlur stdDeviation="3.5"/>
+                                <feComposite in2="hardAlpha" operator="out"/>
+                                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6660_10325"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6660_10325" result="shape"/>
+                                </filter>
+                                </defs>
+                                </svg>
+                            <p class="timeline__year fl-12">2023</p>
+                            <div class="fl-block-empty"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline__block-right">
+                    <img width="220" class="timeline__image-company" src="/media/transneft.svg" alt="логотип компании">
+                    <img width="60" class="timeline__image-company" src="/media/lykoil.svg" alt="логотип компании">
+                    <img width="140" class="timeline__image-company" src="/media/rosneft.svg" alt="логотип компании">
+                    <img width="180" class="timeline__image-company" src="/media/rosseti.svg" alt="логотип компании">
+                    <img width="165" class="timeline__image-company" src="/media/gosznak.svg" alt="логотип компании">
+                    <img width="158" class="timeline__image-company" src="/media/syek.svg" alt="логотип компании">
+                    <img width="60" class="timeline__image-company" src="/media/mm.svg" alt="логотип компании">
+                    <img width="143" class="timeline__image-company" src="/media/gazprom.svg" alt="логотип компании">
+                    <img width="174" class="timeline__image-company" src="/media/alrosa.svg" alt="логотип компании">
+                </div>
+            </div>
+        </section>
+        <section class="integrity">
+            <div class="integrity__texts">
+                <div class="integrity_block">
+                    <p class="integrity__text integrity__left">Integrity SCADA включила в себя лучшие практики проверенного годами решения SCADA Infinity с</p>
+                    <p class="integrity__text integrity__right">более чем 25000 лицензий по всей России</p>
+                </div>
+            </div>
+        </section>
+        <section class="princip">
+            <div class="container">
+                <div class="princip__blocks">
+                    <h2 class="princip__title">Принципы работы</h2>
+                    <p class="princip__subtitle">Как мы работаем</p>
+                    <div class="princip__block">
+                        <div class="princip__block-first princip__block-fx">
+                            <picture class="princip__mobile-img">
+                                <img src="./media/princip.png" alt="картинка">
+                            </picture>
+                            <div class="princip__block-first-box princip__box">
+                                <p class="princip__box-title">01</p>
+                                <p class="princip__box-text">Разработка программного обеспечения ведется по современным методологиям и практикам.</p>
+                            </div>
+                        </div>
+                        <div class="princip__block-second princip__block-fx">
+                            <div class="princip__block-first-box princip__box">
+                                <p class="princip__box-title">02</p>
+                                <p class="princip__box-text">Весь кроссплатформенный код мы пишем на С++. Используем собственные библиотеки и решения. Обеспечиваем максимальную производительность высоконагруженных систем.</p>
+                            </div>
+                            <picture class="princip__mobile-img">
+                                <img src="./media/princip-bottom.png" alt="картинка">
+                            </picture>
+                        </div>
+                        <div class="princip__block-first princip__block-fx">
+                            <picture class="princip__mobile-img">
+                                <img src="./media/fl-3-img.png" alt="картинка">
+                            </picture>
+                            <div class="princip__block-first-box princip__box">
+                                <p class="princip__box-title">03</p>
+                                <p class="princip__box-text">Мы стремимся к улучшению рабочего процесса и внедрению новых технологий.</p>
+                            </div>
+                        </div>
+                        <div class="princip__block-second princip__block-fx">
+                            <div class="princip__block-first-box princip__box">
+                                <p class="princip__box-title">04</p>
+                                <p class="princip__box-text">Наши клиенты - наши партнёры. Мы стремимся к долгосрочным и серьезным отношениям.</p>
+                            </div>
+                            <picture class="princip__mobile-img">
+                                <img src="./media/fl-4-img.png" alt="картинка">
+                            </picture>
+                        </div>
+                        <div class="princip__block-first princip__block-fx">
+                            <picture class="princip__mobile-img">
+                                <img src="./media/fl-5-img.png" alt="картинка">
+                            </picture>
+                            <div class="princip__block-first-box princip__box">
+                                <p class="princip__box-title">05</p>
+                                <p class="princip__box-text">Наши продукты должны предоставлять нашим клиентам максимальную выгоду.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="about__integrity">
+            <div class="container">
+                <div class="about__attributes about_attributes-bt">
+                    <p class="about__attributes-text">Атрибуты Integrity SCADA:</p>
+                    <p class="about__attributes-text">Новая архитектура, возможность развития и наращивания современного функционала</p>
+                    <p class="about__attributes-text">Поддержка отечественных операционных систем, в том числе операционной системы специального назначения Astra Linux SE</p>
+                    <p class="about__attributes-text">Возможность поддержки отечественного железа (процессора Эльбрус, Байкал)</p>
+                </div>
+                <hr class="hr-attributes__end">
+                <div class="about__attributes attributes__end">
+                    <p class="about__attributes-text">Продукт импортозамещения</p>
+                    <p style="margin-left: 3.3rem;" class="about__attributes-text">Кроссплатформенное решение</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__blocks">
+                <div class="footer__block">
+                    <h1 class="footer__title">Головной офис</h1>
+                    <p class="footer__item footer__email-icon mt-30">int@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+                </div>
+                <div class="footer__block">
+                    <h1 class="footer__title">Техническая поддержка</h1>
+                    <p class="footer__item footer__email-icon mt-30">support@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+                </div>
+                <div class="footer__block">
+                    <h1 class="footer__title">Коммерческий отдел</h1>
+                    <p class="footer__item footer__email-icon mt-30">commerce@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+                </div>
+            </div>
+        </div>
+        <hr class="footer__hr mt-50">
+        <h4 class="footer__copyright">(с) 2022 Все права защищены </h4>
+    </footer>
+<script src="./scripts/about.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@import url("./color-base.css");
+@import url("./blocks/body.css");
+@import url("./blocks/container.css");
+@import url("./blocks/header.css");
+@import url('./blocks/products.css');
+@import url('./blocks/footer.css');
+@import url('./margin.css');
+@import url('./blocks/main.css');
+@import url('./blocks/auth.css');
+@import url('./blocks/reg.css');
+@import url('./blocks/contacts.css');
+@import url('./blocks/wrapper.css');
+@import url('./blocks/about.css');
+@import url('./blocks/questionnaire.css');
+@import url('./blocks/test.css');
+@import url('./blocks/components.css');

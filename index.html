@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta content="Integrity SCADA" name="og:title">
+    <meta content="Integrity SCADA - ИНТ" name="og:description">
+    <meta content="Integrity SCADA - ИНТ" name="description">
+    <link rel="shortcut icon" href="./media/favicon.svg">
+    <link rel="stylesheet" href="./styles/index.css">
+    <title>Integrity SCADA - ИНТ</title>
+</head>
+<body class="body">
+    <button class="up">
+        <svg width="36" height="22" viewBox="0 0 36 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 19L18 4L33 19" stroke="#004578" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+    </button>
+    <header class="header header__block">
+        <div class="header__logo-block">
+            <a href="./index.html"><picture>
+                <source srcset="./media/logo-mobile.svg" media="(max-width: 440px)">
+                <img class="header__logo" width="41" height="41" src="./media/logo.svg" alt="Логотип">
+            </picture>
+            </a>
+            <a href="./index.html"><h1 class="header__title">ИНТ</h1></a>
+        </div>
+        <div class="header__container">
+            <div class="header__container-items">
+                <p class="header__p">
+                    <a class="header__link" href="./about.html">о нас</a>
+                </p>    
+                <div class="header__p header__p-hover-product">
+                    <button class="btn__header-p">
+                        <a class="header__link" href="./products.html">продукты</a>
+                    </button>
+                    <div class="dropdown">
+                        <div class="dropdown__content">
+                            <a href="./iserver.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityServer</p>
+                                </div>
+                            </a>
+                            <a href="./reports.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityReports</p>
+                                </div>
+                            </a>
+                            <a href="./datatransport.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityDataTransport</p>
+                                </div>
+                            </a>
+                            <a href="./historyserver.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityHistoryServer</p>
+                                </div>
+                            </a>
+                            <a href="./hmi.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityHMI</p>
+                                </div>
+                            </a>
+                            <a href="./trends.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityTrends</p>
+                                </div>
+                            </a>
+                            <a href="./alarms.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">IntegrityAlarms</p>
+                                </div>
+                            </a>
+                            <a href="./webhmi.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Web Приложения</p>
+                                </div>
+                            </a>
+                            <a href="./licence.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Политика лицензирования</p>
+                                </div>
+                            </a>
+                            <a href="systemreq.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Аппаратные системные требования</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__p header__p-hover-supports">
+                    <button class="btn__header-p">
+                        <a class="header__link" href="./supports.html">поддержка</a>
+                    </button>
+                    <div class="dropdown">
+                        <div class="dropdown__content">
+                            <a href="./supports.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Техническая поддержка</p>
+                                </div>
+                            </a>
+                            <a href="./integrator.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Интеграторам</p>
+                                </div>
+                            </a>
+                            <a href="./documentation.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос документации</p>
+                                </div>
+                            </a>
+                            <a href="./demo.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос пробной версии</p>
+                                </div>
+                            </a>
+                            <a href="./price.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос ценового предложения</p>
+                                </div>
+                            </a>
+                            <a href="./education.html">
+                                <div class="dropdown__item">
+                                    <p class="dropdown__text">Запрос на обучение</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <p class="header__p">
+                    <a class="header__link" href="./contacts.html">контакты</a>
+                </p>
+            </div>
+            <a class="tel" href="">+7 (3822) 601-000</a>
+        </div>
+        <div class="header__auth-links">
+            <picture>
+                <svg class="header__avatar" width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"  d="M14.0001 7.75C15.9723 7.75 17.5716 9.34929 17.5716 11.3214C17.5716 13.2936 15.9723 14.8929 14.0001 14.8929C12.028 14.8929 10.4287 13.2936 10.4287 11.3214C10.4287 9.34929 12.028 7.75 14.0001 7.75ZM14.0001 9.25C15.1444 9.25 16.0716 10.1771 16.0716 11.3214C16.0716 12.4657 15.1444 13.3929 14.0001 13.3929C12.8559 13.3929 11.9287 12.4657 11.9287 11.3214C11.9287 10.1771 12.8559 9.25 14.0001 9.25Z"/>
+                    <path fill-rule="evenodd"  d="M14 16.3929C18.8321 16.3929 22.75 19.895 22.75 24.2143L22.7493 24.25H20.6757C20.5721 21.3579 17.3414 18.4643 14.1071 18.4643C10.8736 18.4643 7.71929 21.3586 7.61571 24.25H5.25071L5.25 24.2143C5.25 19.895 9.16786 16.3929 14 16.3929Z"/>
+                    <path fill-rule="evenodd"  d="M14 26C20.6274 26 26 20.6274 26 14C26 7.37258 20.6274 2 14 2C7.37258 2 2 7.37258 2 14C2 20.6274 7.37258 26 14 26ZM14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28Z"/>
+                </svg>
+            </picture>
+            <a class="header__auth-link" href="./auth.html">Вход</a>
+            <span class="header__span">|</span>
+            <a class="header__auth-link" href="./reg.html">Регистрация</a>
+        </div>
+    </header>
+    <div class="mob__menu">
+        <input class="side-menu" type="checkbox" id="side-menu"/>
+        <label class="hamb" for="side-menu">
+            <span class="hamb-line"></span>
+            <div class="header__auth-link-mobile">
+                <picture>
+                    <img class="header__avatar" src="./media/auth_avatar.svg" alt="Аватарка">
+                </picture>
+                <a class="header__auth-link" href="./auth.html">Вход</a>
+                <span class="header__span">|</span>
+                <a class="header__auth-link" href="./reg.html">Регистрация</a>
+            </div>
+        </label>
+
+        <nav class="nav">
+            <ul class="menu">
+                <div class="menu__block menu__block-product">
+                    <p class="menu__item">Продукты</p>
+                    <svg class="svg" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L10 11L2 20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="product__mobile-list mobile-list">
+                    <div class="select__ll" >
+                        <div class="ll">
+                            <a href="./iserver.html">
+                                <p class="ll-text">IntegrityServer</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./reports.html">
+                                <p class="ll-text">IntegrityReports</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./datatransport.html">
+                                <p class="ll-text">IntegrityDataTransport</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./historyserver.html">
+                                <p class="ll-text">IntegrityHistoryServer</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./hmi.html">
+                                <p class="ll-text">IntegrityHMI</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./trends.html">
+                                <p class="ll-text">IntegrityTrends</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./alarms.html">
+                                <p class="ll-text">IntegrityAlarms</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./webhmi.html">
+                                <p class="ll-text">IntegrityWebHMI</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu__block menu__block-supports">
+                    <p class="menu__item">Поддержка</p>
+                    <svg class="svg-support" width="13" height="22" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2L10 11L2 20" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="supports__mobile-list mobile-list">
+                    <div class="select__ll" >
+                        <div class="ll">
+                            <a href="./supports.html">
+                                <p class="ll-text">Техническая поддержка</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./integrator.html">
+                                <p class="ll-text">Интеграторам</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./documentation.html">
+                                <p class="ll-text">Запрос документации</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./demo.html">
+                                <p class="ll-text">Запрос пробной версии</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./price.html">
+                                <p class="ll-text">Запрос ценового предложения</p>
+                            </a>
+                        </div>
+                        <div class="ll">
+                            <a href="./education.html">
+                                <p class="ll-text">Запрос на обучение</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <li><a href="./contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main class="main__index__mobile">
+        <section class="preview">
+            <div class="container">
+                <picture>
+                    <source srcset="./media/int-logo-mob.png" media="(max-width: 460px)">
+                    <a href="./products.html"><img class="preview__photo" src="./media/integrity-logo-header.png" alt="Integrity"></a>
+                </picture>
+                <h2 class="preview__title">ОТЕЧЕСТВЕННАЯ SCADA НА LINUX</h2>
+                <h3 class="preview__subtitle">для управления технологическими процессами</h3>
+                <p class="preview__text">Платформа для создания систем управления и автоматизации, без ограничения на использование по отраслям промышленности.</p>
+                <div class="preview__buttons">
+                    <a href="./demo.html"><button class="preview__btn-demo">демо</button></a>
+                    <a href="./price.html"><button class="preview__btn-price">узнать цену</button></a>
+                </div>
+            </div>
+        </section>
+        <section class="scada">
+            <div class="container">
+                <a href="./products.html"><h1 class="scada__title">Integrity SCADA</h1></a>
+                <div class="scada__blocks">
+                    <a href="./hmi.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/product-hmi.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityHMI</h3>
+                                    <p class="scada__block-subtitle">Приложение визуализации</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">Визуализация технологического процесса посредством графических примитивов, динамик и других способов отображения технологических данных. В основе лежит современный векторный редактор с поддержкой объектного подхода к конфигурированию. </p>
+                        </div>
+                    </a>
+                    <a href="./webhmi.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/web-icon.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityWeb</h3>
+                                    <p class="scada__block-subtitle">Web-приложение визуализации</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Реализация клиента визуализации посредством Web клиента для отображения на любой
+                                платформе, в любом браузере, поддерживающем HTML5. Поддержаны компоненты
+                                IntegrityAlarms и IntegrityTrends для работы в составе Web проекта визуализации.
+                              </p>
+                        </div>
+                    </a>
+                    <a href="./trends.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/reports-icon.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityTrends</h3>
+                                    <p class="scada__block-subtitle">Приложение отображения графиков</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">Отображение в виде настраиваемых графиков и гистограмм изменений оперативных и исторических технологических параметров. </p>
+                        </div>
+                    </a>
+                    <a href="./alarms.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/alarms-icon.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityAlarms</h3>
+                                    <p class="scada__block-subtitle">Приложение отображение событий</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Отображение в табличном представлении с цветовой и звуковой маркировкой оперативных
+                                и исторических событий и аварий. Реализует механизм квитирования сообщений.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./iserver.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/server-icon.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityServer</h3>
+                                    <p class="scada__block-subtitle">Cервер ввода/вывода оперативных данных</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Сбор данных по технологическим протоколам, математическая обработка данных,
+                                генерация сообщений о событиях и авариях, предоставление данных сторонним системам и
+                                клиентским приложениям.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./historyserver.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/product-history-server.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityHistoryServer</h3>
+                                    <p class="scada__block-subtitle">Сервер истории</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Сбор и хранение данных технологического процесса, а также предоставление
+                                исторических данных сторонним системам и клиентским приложениям. СУБД собственной
+                                разработки.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./reports.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/product-reports.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityReports</h3>
+                                    <p class="scada__block-subtitle">Система формирования отчетов</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Формирование отчетов различного уровня сложности для анализа исторических данных и
+                                оперативной производственной информации. Рассылка отчетов посредством e-mail.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./datatransport.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/data-trans-icon.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityDataTransport</h3>
+                                    <p class="scada__block-subtitle">Сервер транспорта данных</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Организация единого адресного пространства, обеспечение транспорта данных, как между
+                                компонентами ПК, так и в рамках территориально распределенных источников данных и
+                                клиентских компонент.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./clientsecurity.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/product-reports.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityClientSecurity</h3>
+                                    <p class="scada__block-subtitle">Сервер клиентской безопасности</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Разграничение прав доступа к функциям клиентских компонент. 
+                                Хранение настроек безопасности для пользователей 
+                                клиентских компонент. Обеспечение методов аутентификации 
+                                пользователей, как в рамках рабочих групп, так и в рамках 
+                                доменной сети предприятия.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./ienvcontrol.html">
+                        <div class="scada__block">
+                            <div class="scada__block-top">
+                                <img class="scada__block-icon" loading="lazy" src="./media/iec-icon.svg" alt="иконка">
+                                <div class="scada__block-titles">
+                                    <h3 class="scada__block-title">IntegrityEnvironmentControl </h3>
+                                    <p class="scada__block-subtitle">Система контроля среды исполнения</p>
+                                </div>
+                            </div>
+                            <p class="scada__block-text mt-20">
+                                Осуществление контроля целостности среды исполнения проекта: проверка контрольных сумм файлов, слежение 
+                                за процессами и службами, контроль утилизации ресурсов операционной системы.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="buy">
+            <div class="container">
+                <h2 class="buy__title">Что вы получите приобретая наши продукты?</h2>
+                <div class="buy__blocks">
+                    <div class="buy__block">
+                        <div class="buy__block-top">
+                            <picture>
+                                <img class="buy__avatar" loading="lazy" src="./media/icon_3.svg" alt="аватарка">
+                            </picture>
+                            <h3 class="buy__block-title">Инжиниринг</h3>
+                        </div>
+                        <ul class="buy__items">
+                            <li class="buy__item marker">Гибкость конфигурирования</li>
+                            <li class="buy__item marker">Короткие сроки разработки проектов автоматизации</li>
+                            <li class="buy__item marker">Возможность использования готовых библиотек объектов визуализации</li>
+                            <li class="buy__item marker">Возможность построения распределенных систем</li>
+                            <li class="buy__item marker">Открытость</li>
+                            <li class="buy__item marker">Простота разработки и развития</li>
+                        </ul>
+                    </div>
+                    <div class="buy__block">
+                        <div class="buy__block-top">
+                            <picture>
+                                <img class="buy__avatar" loading="lazy" src="./media/exploitation.svg" alt="аватарка">
+                            </picture>
+                            <h3 class="buy__block-title">ЭКСПЛУАТАЦИЯ</h3>
+                        </div>
+                        <ul class="buy__items">
+                            <li class="buy__item marker">Надежность</li>
+                            <li class="buy__item marker">Высокую производительность</li>
+                            <li class="buy__item marker">Fault Tolerance - высокую отказоустойчивость</li>
+                            <li class="buy__item marker">Использование привычных технологий АСУ ТП</li>
+                            <li class="buy__item marker">Простоту обслуживания</li>
+                            <li class="buy__item marker">Обучение и сопровождение рабочего процесса</li>
+                            <li class="buy__item marker">Техническую поддержку</li>
+                        </ul>
+                    </div>
+                    <div class="buy__block">
+                        <div class="buy__block-top">
+                            <picture>
+                                <img class="buy__avatar" loading="lazy" src="./media/manage.svg" alt="аватарка">
+                            </picture>
+                            <h3 class="buy__block-title">менеджмент</h3>
+                        </div>
+                        <ul class="buy__items">
+                            <li class="buy__item marker">Маштабируемость</li>
+                            <li class="buy__item marker">Легкую интеграцию</li>
+                            <li class="buy__item marker">Открытую и понятную архитектуру</li>
+                            <li class="buy__item marker">Снижение сроков внедрения проектов</li>
+                            <li class="buy__item marker">Гибкий подход к лицензированию</li>
+                            <li class="buy__item marker">Снижение издержек на разработку</li>
+                            <li class="buy__item marker">Большое количество сертифицированных интеграторов</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="info">
+            <div class="container">
+                <div class="info__blocks">
+                    <div class="info__block">
+                        <p class="info__num info__num-projects" data-max="100">70</p>
+                        <p class="info__text">% Отечественное</br>решение</p>
+                    </div>
+                    <div class="info__block">
+                        <p class="info__num info__num-year" data-max="24">1</p>
+                        <p class="info__text">Года опыта разработки
+                            собственной SCADA
+                            системы
+                        </p>
+                    </div>
+                    <div class="info__block">
+                        <p class="info__num info__num-licence" data-max="28000">27955</p>
+                        <p class="info__text">Лицензий</br>по всей России</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="astra">
+            <div class="container">
+                <div class="astra__blocks">
+                    <!--<picture class="picture__astra">
+                        <source srcset="./media/astra-mobile.png" media="(max-width: 440px)">
+                        <a class="astra__target" target="_blank" href="https://astralinux.ru/ready-for-software/integrityscada/">
+                            <img class="astra__block-img" loading="lazy" src="./media/astra.png" alt="Astra Linux">
+                        </a>
+                    </picture>-->
+                    <div class="astra__pictures">
+                        <img class="astra__picture" src="./media/astra_linux.svg" alt="">
+                        <img class="astra__picture" src="./media/redos.svg" alt="">
+                        <img class="astra__picture" src="./media/alt-linux.png" alt="">
+                        <img class="astra__picture" src="./media/atlant.svg" alt="">
+                    </div>
+                    <div class="astra__block">
+                        <h2 class="astra__block-title">Совместимость с отечественными операционными системами</h2>
+                        <p class="astra__block-text astra__block-point">подтверждена совместимость с ведущими отечественными операционными системами: Astra Linux, Alt Linux, РедОС, Атлант</p>
+                        <p class="astra__block-text astra__block-point">получены сертификаты совместимости с отечественными защищенными операционными системами</p>
+                        <div class="astra_certs">
+                            
+                            <div id="myModal" class="modal closeElem">
+                                <span class="close">&times;</span>
+                                <img class="modal-content" id="img01">
+                                <div id="caption"></div>
+                            </div>
+                            <div id="myModal2" class="modal closeElem">
+                                <span class="close2">&times;</span>
+                                <img class="modal-content" id="img02">
+                                <div id="caption2"></div>
+                            </div>
+                            <div id="myModal3" class="modal closeElem">
+                                <span class="close3">&times;</span>
+                                <img class="modal-content" id="img03">
+                                <div id="caption3"></div>
+                            </div>
+                            <div id="myModal4" class="modal closeElem">
+                                <span class="close4">&times;</span>
+                                <img class="modal-content" id="img04">
+                                <div id="caption4"></div>
+                            </div>
+                            <picture style="margin-left: 0;">
+                                <img width="150" height="212" loading="lazy" class="astra__cert cert1" src="./media/sert-big.webp" alt="сертификат">
+                            </picture>
+                            <picture>
+                                <img width="150" height="212" loading="lazy" class="astra__cert cert2" src="./media/cert_2.webp" alt="сертификат">
+                            </picture>
+                            <picture>
+                                <img width="150" height="212" loading="lazy" class="astra__cert cert3" src="./media/astra-cert.png" alt="сертификат">
+                            </picture>
+                            <picture>
+                                <img width="150" height="212" loading="lazy" class="astra__cert cert4" src="./media/astra2.png" alt="сертификат">
+                            </picture>
+                        </div>
+                        <p class="astra__block-text">Integrity SCADA 
+                            работает в ОС Astra Linux Смоленск 
+                            в том числе в режиме замкнутой программной среды
+                        </p>
+                    </div>
+                </div>
+                <div class="astra__certs">
+                </div>
+            </div>
+        </section>
+        <!--<section class="partners">
+            <div class="container">
+                <hr class="slider__top slider__hr">
+                <div class="partners__block">
+                    <h2 class="partners__title">Наши <br> Партнёры</h2>
+                    <img class="partners__cursor cursor__left" id="prev" src="./media/prev-icon.svg" alt="Стрелка">
+                    <div class="slider">
+                        <div class="slider__first-pack slider__pack">
+                            <img loading="lazy" class="partners__slider lykoil" src="./media/lykoil.svg" alt="Лукойл">
+                            <img loading="lazy" class="partners__slider gazprom" src="./media/gazprom.svg" alt="Газпром">
+                            <img loading="lazy" class="partners__slider syek" src="./media/syek.svg" alt="СУЭК">
+                        </div>
+                        <div class="slider__second-pack slider__pack">
+                            <img loading="lazy" class="partners__slider rosseti" src="./media/rosseti.svg" alt="РОССЕТИ">
+                            <img width="102" height="99" loading="lazy" class="partners__slider metro" src="./media/mm.svg" alt="Московский метрополитен">
+                            <img loading="lazy" class="partners__slider transneft" src="./media/transneft.svg" alt="Транснефть">
+                        </div>
+                    </div>
+                    <div class="slider_wrapper">
+                        <div class="slider_main">
+                          <div class="slider_screen">
+                            <div class="slider_ribbon" style="transform: translateX(-186%)" id="ribbon">
+                                 <img loading="lazy" class="partners__slider lykoil" src="./media/test-lykoil.png" alt="Лукойл">
+                                 <img loading="lazy" class="partners__slider slider-img gazprom" src="./media/gazprom.svg" alt="Газпром">
+                                 <img loading="lazy" class="partners__slider slider-img syek" src="./media/syek.svg" alt="СУЭК">
+                                 <img loading="lazy" class="partners__slider slider-img rosseti" src="./media/rosseti.svg" alt="РОССЕТИ">
+                                 <img loading="lazy" class="partners__slider slider-img metro"  src="./media/mm.svg" alt="Московский метрополитен" width="102" height="99">
+                                 <img loading="lazy" class="partners__slider slider-img transneft" src="./media/transneft.svg" alt="Транснефть">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <img class="partners__cursor cursor__right" id="next" src="./media/part-icon.svg" alt="Стрелка">
+                </div>
+                <hr class="slider__bottom slider__hr">
+            </div>
+        </section>-->
+        <section class="security">
+            <div class="container">
+                <h2 class="security__title">Безопасность</h2>
+                <h3 class="security__subtitle">ОСОБОЕ ВНИМАНИЕ УДЕЛЕНО БЕЗОПАСНОСТИ:</h3>
+                <div class="security__blocks">
+                    <div class="security__right"><p class="astra__block-point">программный комплекс разработан в соответствии с требованиями безопасной разработки программного обеспечения, лицензия на деятельность по разработке и производству средств защиты конфиденциальной информации ФСТЭК России №Л050-00107-00/00584020</p>
+                        <p style="margin-left: 100px; margin-top: 20px;" class="astra__block-point">уровень информационной безопасности компонент программного комплекса соответствует требованиям по обеспечению безопасности значимых объектов КИИ Российской Федерации (Приказ № 239 ФСТЭК России от 25.12.2017), в соответствии с Федеральным законом от 26.07.2017 № 187-ФЗ «О безопасности критической информационной инфраструктуры Российской Федерации»</p>
+                        <p style="margin-left: 240px; margin-top: 20px;" class="astra__block-point">обмен данными между компонентами осуществляется по спецификации OPC UA, поддерживается аутентификация пользователей, асимметричное шифрование по открытому 
+                            и закрытому ключу, SSL сертификация</p>
+                        <p style="margin-left: 300px; margin-top: 20px;" class="astra__block-point">сервер клиентской безопасности позволяет настроить доступ к отдельным функциям клиентских приложений, поддерживается создание пользовательских функций проверки прав доступа для проектов автоматизации (например, включение/отключение конкретного агрегата на мнемосхеме, управление конкретным переключателем/задвижкой, задание уставок и пр.)</p>
+                        <p style="margin-left: 300px; margin-top: 20px;" class="astra__block-point">осуществляется проверка изменений контрольных сумм файлов, слежение за ресурсами операционной системы</p>
+                        <h3 class="security__h3" style="margin-left: 300px; margin-top: 20px;" >Входит в реестр отечественного ПО (Реестровая запись №5671 от 26.07.2019), согласно базы данных ФСТЭК России уязвимости в программном комплексе Integrity SCADA отсутствуют</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="security__footer">
+                <div class="security__footer-block">
+                    <h3 class="security__footer-text">
+                        Протестирован
+						антивирусами под Linux   
+                    </h3>
+                    <div class="security__footer-imgs">
+                        <img class="security__footer-img" width="125" src="./media/drweb.png" alt="">
+                        <img class="security__footer-img" width="98" src="./media/kaspersky.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="news">
+            <div class="container">
+                <h2 class="news__title">Новости</h2>
+                <div class="news__blocks">
+
+                    <div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/SPIGF24.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">ПМГФ-2024</h3>
+                            <a class="news__block-text" href="https://gas-forum.ru/ru/" target="_blank">Уважаемые коллеги и партнеры! С 08 по 11 октября  2024 наша компания примет участие в Петербургском международном газовом форуме. Приглашаем посетить наш стенд – павильон F стенд B7</a>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+
+                    <div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/Reestr.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">ИНТЕГРИТИ ОПТИМА</h3>
+                            <a class="news__block-text"href="https://reestr.digital.gov.ru/reestr-pak/2623726/" target="_blank">Собственный программно-аппаратный комплекс для реализации систем автоматизированного управления прошел регистрацию в Реестре Минцифры, реестровая запись №23842, согласно Постановления Правительства PФ от 14 ноября 2023 г. N 1912. о необходимости перехода с 1 сентября 2024 субъектов критической информационной инфраструктуры на преимущественное применение ПАК</a>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+
+                    <div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/Avtomatiz_2024.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">Автоматизация 2024</h3>
+                            <p class="news__block-text">Уважаемые коллеги и партнеры! С 25 по 27 сентября  2024 Компания ЭлеСи примет участие в 25-ой международной выставке – Автоматизация-2024. Приглашаем посетить наш стенд – павильон G стенд D5.</p>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+
+                    <div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/Innoprom_2024.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">Иннопром 2024</h3>
+                            <p class="news__block-text">Уважаемые коллеги и партнеры! С 8 по 11 июня 2024 Наша компания примет участие в международной промышленной выставке – ИННОПРОМ-2024. Приглашаем посетить наш стенд – павильон 2 стенд 2А5.</p>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+
+                    <div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/Elektro2024.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">Электро 2024</h3>
+                            <p class="news__block-text">Уважаемые коллеги и партнеры! С 4 по 7 июня 2024 Наша компания примет участие в 32-ой международной выставке «Электрооборудование. Светотехника. Автоматизация зданий и сооружений» Приглашаем посетить наш стенд – павильон 2 зал 3 стенд 23G60.</p>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+
+                    <div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/Neftegaz2024.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">Нефтегаз 2024</h3>
+                            <p class="news__block-text">С 15 по 18 апреля 2024 г. Наша компания приняла участие в 23-ей международной выставке «Оборудование и технологии для нефтегазового комплекса». Выставка «Нефтегаз», входит в десятку крупнейших нефтегазовых смотров мира.</p>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+					
+					<!--<div class="news-hover">                  
+						<div class="news__block">
+							<picture>
+								<img loading="lazy" class="news__block-image" src="./media/SPIGF23.png" alt="баннер">
+							</picture>
+							<h3 class="news__block-title">Газовый форум 2023</h3>
+							<p class="news__block-text">С 31 октября по 3 ноября в рамках Петербургского международного газового форума – 2023 на стенде компании были представлены проекты, реализованные на платформе Integrity SCADA. Интерес посетителей был направлен на демонстрацию готовых отраслевых решений, встроенные средства информационной безопасности, реализацию по миграция существующих проектов на ОС LINUX и технологические возможности комплекса в условиях LINUX систем.</p>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+
+					<div class="news-hover">                  
+						<div class="news__block">
+							<picture>
+								<img loading="lazy" class="news__block-image" src="./media/Avtomatiz.png" alt="баннер">
+							</picture>
+							<h3 class="news__block-title">Выставка Автоматизация 2023</h3>
+							<p class="news__block-text">С 27 по 29 сентября 2023 г. состоится международная промышленная выставка Автоматизация 2023. Приглашаем Вас посетить наш стенд D6 в КВЦ ЭКСПОФОРУМ в г. Санкт-Петербург.</p>
+							<p class="news__block-text"></p>
+						</div>
+                    </div>
+					
+					<div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/Innoprom_2023.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">Приглашаем Вас на выставку ИННОПРОМ 2023</h3>
+                            <p class="news__block-text" style="margin-top: 0.7rem">С 10 по 13 июля 2023 г. состоится Международная промышленная выставка ИННОПРОМ 2023. На стенде копании будут представлены новинки отечественного комплекса Integrity SCADA. В режиме реального времени будут демонстрироваться проекты из разных отраслей промышленности. Приглашаем Вас посетить стенд группы компаний ЭлеСи №2А5 в павильоне 2 в МВЦ Екатеринбург-ЭКСПО г. Екатеринбург.</p>
+                            <p class="news__block-text"></p>
+                        </div>
+                    </div>
+					
+					<div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/news-second.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">Релиз 1.0.10</h3>
+                            <p class="news__block-text">Состоялся очередной релиз программного комплекса Integrity SCADA. Добавлены новые компоненты - IntegrityEnvironmentControl (приложение контроля среды исполнения), IntegritySimpleReports (простые отчеты на основе шаблонов офисных пакетов).</p>
+                            <p class="news__block-text">30.06.2023</p>
+                        </div>
+                    </div>
+ 
+					<div class="news-hover">
+                        <div class="news__block">
+                            <picture>
+                                <img loading="lazy" class="news__block-image" src="./media/news-inno.png" alt="баннер">
+                            </picture>
+                            <h3 class="news__block-title">Выставка «Радиоэлектроника и приборостроение»</h3>
+                            <p class="news__block-text" style="margin-top: 0.7rem">С 21 по 23 сентября 2022 г. в Санкт-Петербурге состоялась выставка «Радиоэлектроника и приборостроение», где наша компания представила решения на основе коплекса Integrity SCADA. Акцент на удобстве использования, гибкости...</p>
+                            <p class="news__block-text">23.09.2022</p>
+                        </div>
+                    </div>-->
+					
+                </div>
+            </div>
+        </section>
+        <section class="form__main">
+            <div class="container">
+                <form id="form" class="form__main-block form" method="POST" action="./php.php">
+                    <h2 class="form__product-title">Хотите получить бесплатную пробную версию дистрибутива для тестирования
+                        или задать вопрос?
+                    </h2>
+                    <h3 class="form__product-subtitle">Заполните форму ниже</h3>
+                    <p class="form__product-warning">Пожалуйста, заполните все обязательные поля.</p>
+                    <input required name="name" class="form__main-fio" type="text" placeholder="ФИО">
+                    <div class="form__inputs">
+                        <div class="form__left-input">
+                            <label for="company"><input required id="company" name="company" class="content__input-small" type="text" placeholder="Компания"></label>
+                            <div class="div__input-select">
+                                <select name="select" class="content__input-small content__input-select" name="target__request" id="product__select">
+                                    <option selected disabled value="">Цель запроса</option>
+                                    <option class="option" value="Техническая поддержка">Техническая поддержка</option>
+                                    <option class="option" value="Интеграторам">Интеграторам</option>
+                                    <option class="option" value="Запрос документации">Запрос документации</option>
+                                    <option class="option" value="Запрос пробной версии">Запрос пробной версии</option>
+                                    <option class="option" value="Запрос ценового предложения">Запрос ценового предложения</option>
+                                    <option class="option" value="Запрос на обучение">Запрос на обучение</option>
+                                </select>
+                            </div>
+                            <!--<input class="content__input-small" type="text" placeholder="Цель запроса">-->
+                        </div>
+                        <div class="form__right-input">
+                            <input required name="email" class="content__input-small" type="email" placeholder="Электронная почта">
+                            <input required pattern="^((\+7|7|8)+([0-9]){10})$" name="tel" class="content__input-small" type="tel" placeholder="Телефон">
+                        </div>
+                    </div>
+                    <input required name="message" class="product__input" type="text" placeholder="Сообщение">
+                    <div class="form__captcha">
+                        <h3 class="form__captcha-target" data-value="8">Integrity SCADA</h3>
+                        <p class="form__captcha-text">Укажите букву, подсвеченную красным цветом в названии Integrity SCADA</p>
+                        <input maxlength="1" class="form__captcha-input" required type="text" placeholder="Введите букву">
+                        <span class="captcha__warning form__product-warning">Не совпадает</span>
+                    </div>
+                    <div class="btn__submit-main">
+                        <p class="form__text"><span class="form__blue">Отправляя запрос, Вы даёте согласие на обработку</span> <br> <span class="warning">ПЕРСОНАЛЬНЫХ ДАННЫХ</span></p>
+                        <input class="btn__product-submit" type="submit">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__blocks">
+                <div class="footer__block">
+                    <h2 class="footer__title">Головной офис</h2>
+                    <p class="footer__item footer__email-icon mt-30">int@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+                </div>
+                <div class="footer__block">
+                    <h2 class="footer__title">Техническая поддержка</h2>
+                    <p class="footer__item footer__email-icon mt-30">support@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-444</p>
+                </div>
+                <div class="footer__block">
+                    <h2 class="footer__title">Коммерческий отдел</h2>
+                    <p class="footer__item footer__email-icon mt-30">commerce@scadaint.ru</p>
+                    <p class="footer__item footer__mobile-icon">+7 (3822) 601-114</p>
+                </div>
+            </div>
+        </div>
+        <hr class="footer__hr mt-50">
+        <h4 class="footer__copyright">(с) 2022 Все права защищены </h4>
+    </footer>
+<script src="./scripts/index.js"></script>
+<script src="./scripts/about.js"></script>
+<script src="./scripts/mail.js"></script>
+<script src="./scripts/slide.js"></script>
+</body>
+</html>

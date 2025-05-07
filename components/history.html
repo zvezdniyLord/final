@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+  <head>
+    <script src="./js/auth-check.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <title>Запросы</title>
+    <style>
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #28a745; /* Зеленый цвет для успешного уведомления */
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.5s ease;
+        opacity: 0;
+        z-index: 1000; /* Убедитесь, что уведомление выше остальных элементов */
+        pointer-events: none; /* Не хочет клиента взаимодействовать с уведомлением */
+      }
+      .notification.visible {
+        opacity: 1;
+      }
+      .notification.hidden {
+        opacity: 0;
+      }
+      .active {
+        background-color: var(--color-btn-blue);
+        color: white;
+      }
+
+      .btn-email-del {
+        background-color: var(--color-primary-red);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        max-width: 100%;
+        width: 100px;
+      }
+
+      #composeBtn {
+        width: 146px;
+        max-width: 150px;
+        height: 32px;
+        background-color: white;
+        font-size: 16px;
+        line-height: 15px;
+        border: 2px solid rgba(227, 227, 228, 1);
+        margin-top: 2rem;
+      }
+
+      .email-form-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+
+      .email-form {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 600px;
+        z-index: 1001;
+      }
+
+      .email-form input,
+      .email-form textarea {
+        width: 100%;
+        margin: 10px 0;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .email-form-buttons {
+        display: flex;
+        justify-content: flex-end; /* Выровнять кнопки вправо */
+      }
+
+      .email-form-buttons button {
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        color: white;
+      }
+
+      /* Стиль для кнопки "Отправить" */
+      .email-form-buttons button[type="submit"] {
+        background-color: #007bff; /* Основной цвет */
+      }
+
+      .email-form-buttons button[type="submit"]:hover {
+        background-color: #0056b3; /* Темный цвет при наведении */
+        transform: translateY(-2px); /* Поднимаем кнопку немного выше */
+      }
+
+      /* Стиль для кнопки "Отмена" */
+      .email-form-buttons button[type="button"] {
+        background-color: #d9534f; /* Цвет для отмены */
+      }
+
+      .email-form-buttons button[type="button"]:hover {
+        background-color: #c9302c; /* Темный цвет при наведении */
+        transform: translateY(-2px); /* Поднимаем кнопку немного выше */
+      }
+
+      .send-button,
+      .btn-email-open {
+        background-color: var(--color-btn-blue);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .cancel-button {
+        background-color: gray;
+        color: #fff;
+        border: 1px solid #ddd;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .compose-button {
+        background-color: var(--color-btn-blue);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+
+      .email-block-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn-email-permanent-del {
+        background-color: var(--color-primary-red);
+        color: #fff;
+        max-width: 100%;
+        width: 120px;
+        margin-right: 1rem;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        max-width: 500px;
+        width: 90%;
+        transition: all 0.3s ease-in-out;
+        height: 60%;
+      }
+      .modal-header {
+        font-size: 20px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+      }
+      .modal-content {
+        margin-bottom: 20px;
+      }
+      .modal-footer {
+        text-align: right;
+      }
+      .modal button {
+        padding: 8px 12px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s;
+      }
+      .modal button:hover {
+        background-color: #0056b3; /* Более темный цвет при наведении */
+      }
+    </style>
+  </head>
+  <body class="body">
+    <header class="header header__block">
+      <div class="header__logo-block">
+        <picture>
+          <source srcset="./media/logo-mobile.svg" media="(max-width: 440px)" />
+          <img
+            class="header__logo"
+            width="41"
+            height="41"
+            src="../media/logo.svg"
+            alt="Логотип"
+          />
+        </picture>
+        <h2 class="header__title">ИНТ</h2>
+      </div>
+      <div class="header__container">
+        <div class="header__container-items">
+          <p class="header__p">
+            <a class="header__link" href="../about.html">о нас</a>
+          </p>
+          <div class="header__p header__p-hover-product">
+            <button class="btn__header-p">
+              <a class="header__link" href="../products.html">продукты</a>
+            </button>
+            <div class="dropdown">
+              <div class="dropdown__content">
+                <a href="../iserver.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityServer</p>
+                  </div>
+                </a>
+                <a href="../reports.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityReports</p>
+                  </div>
+                </a>
+                <a href="../datatransport.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityDataTransport</p>
+                  </div>
+                </a>
+                <a href="../historyserver.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityHistoryServer</p>
+                  </div>
+                </a>
+                <a href="../hmi.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityHMI</p>
+                  </div>
+                </a>
+                <a href="../trends.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityTrends</p>
+                  </div>
+                </a>
+                <a href="../alarms.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityAlarms</p>
+                  </div>
+                </a>
+                <a href="../webhmi.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Web Приложения</p>
+                  </div>
+                </a>
+                <a href="../licence.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Политика лицензирования</p>
+                  </div>
+                </a>
+                <a href="systemreq.html">
+                  <div class="dropdown__item dropdown__border">
+                    <p class="dropdown__text">
+                      Аппаратные системные требования
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="header__p header__p-hover-supports">
+            <button class="btn__header-p">
+              <a class="header__link" href="../supports.html">поддержка</a>
+            </button>
+            <div class="dropdown">
+              <div class="dropdown__content">
+                <a href="../supports.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Техническая поддержка</p>
+                  </div>
+                </a>
+                <a href="../integrator.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Интеграторам</p>
+                  </div>
+                </a>
+                <a href="../documentation.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос документации</p>
+                  </div>
+                </a>
+                <a href="../demo.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос пробной версии</p>
+                  </div>
+                </a>
+                <a href="../price.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос ценового предложения</p>
+                  </div>
+                </a>
+                <a href="../education.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос на обучение</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <p class="header__p">
+            <a class="header__link" href="../contacts.html">контакты</a>
+          </p>
+        </div>
+        <a class="tel" href="+7 (3822) 601-000">+7 (3822) 601-000</a>
+      </div>
+      <div class="header__auth-links">
+        <picture>
+          <a href="../auth.html">
+            <svg
+              class="header__avatar"
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M14.0001 7.75C15.9723 7.75 17.5716 9.34929 17.5716 11.3214C17.5716 13.2936 15.9723 14.8929 14.0001 14.8929C12.028 14.8929 10.4287 13.2936 10.4287 11.3214C10.4287 9.34929 12.028 7.75 14.0001 7.75ZM14.0001 9.25C15.1444 9.25 16.0716 10.1771 16.0716 11.3214C16.0716 12.4657 15.1444 13.3929 14.0001 13.3929C12.8559 13.3929 11.9287 12.4657 11.9287 11.3214C11.9287 10.1771 12.8559 9.25 14.0001 9.25Z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14 16.3929C18.8321 16.3929 22.75 19.895 22.75 24.2143L22.7493 24.25H20.6757C20.5721 21.3579 17.3414 18.4643 14.1071 18.4643C10.8736 18.4643 7.71929 21.3586 7.61571 24.25H5.25071L5.25 24.2143C5.25 19.895 9.16786 16.3929 14 16.3929Z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14 26C20.6274 26 26 20.6274 26 14C26 7.37258 20.6274 2 14 2C7.37258 2 2 7.37258 2 14C2 20.6274 7.37258 26 14 26ZM14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28Z"
+              />
+            </svg>
+          </a>
+        </picture>
+        <a class="header__auth-link" href="../auth.html">Выход</a>
+      </div>
+    </header>
+    <div class="mob__menu">
+      <input class="side-menu" type="checkbox" id="side-menu" />
+      <label class="hamb" for="side-menu">
+        <span class="hamb-line"></span>
+        <div class="header__auth-link-mobile">
+          <picture>
+            <img
+              class="header__avatar"
+              src="./media/auth_avatar.svg"
+              alt="Аватарка"
+            />
+          </picture>
+          <a class="header__auth-link" href="../auth.html">Выход</a>
+        </div>
+      </label>
+
+      <nav class="nav">
+        <ul class="menu">
+          <div class="menu__block menu__block-product">
+            <p class="menu__item">Продукты</p>
+            <svg
+              class="svg"
+              width="13"
+              height="22"
+              viewBox="0 0 13 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L10 11L2 20"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="product__mobile-list mobile-list">
+            <div class="select__ll">
+              <div class="ll">
+                <a href="../iserver.html">
+                  <p class="ll-text">IntegrityServer</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../reports.html">
+                  <p class="ll-text">IntegrityReports</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../datatransport.html">
+                  <p class="ll-text">IntegrityDataTransport</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../historyserver.html">
+                  <p class="ll-text">IntegrityHistoryServer</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../hmi.html">
+                  <p class="ll-text">IntegrityHMI</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../trends.html">
+                  <p class="ll-text">IntegrityTrends</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../alarms.html">
+                  <p class="ll-text">IntegrityAlarms</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../webhmi.html">
+                  <p class="ll-text">IntegrityWebHMI</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="menu__block menu__block-supports">
+            <p class="menu__item">Поддержка</p>
+            <svg
+              class="svg-support"
+              width="13"
+              height="22"
+              viewBox="0 0 13 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L10 11L2 20"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="supports__mobile-list mobile-list">
+            <div class="select__ll">
+              <div class="ll">
+                <a href="../supports.html">
+                  <p class="ll-text">Техническая поддержка</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../integrator.html">
+                  <p class="ll-text">Интеграторам</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../documentation.html">
+                  <p class="ll-text">Запрос документации</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../demo.html">
+                  <p class="ll-text">Запрос пробной версии</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../price.html">
+                  <p class="ll-text">Запрос ценового предложения</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../education.html">
+                  <p class="ll-text">Запрос на обучение</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <li><a href="../contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="content">
+        <div class="list__products left__block">
+          <a href="./lk.html"
+            ><button class="btn__list__products">Личные данные</button></a
+          >
+          <a href="./history.html"
+            ><button class="mt-20 btn__list__products-active">
+              История заявок
+            </button></a
+          >
+          <a href="./documents.html"
+            ><button class="mt-20 btn__list__products">Документация</button></a
+          >
+          <a href="./video.html"
+            ><button class="mt-20 btn__list__products">Видео уроки</button></a
+          >
+          <a href="./keys.html"
+            ><button class="mt-20 btn__list__products">
+              Лицензионные ключи
+            </button></a
+          >
+        </div>
+        <div class="text__products right__block">
+          <div class="select-requests">
+            <h2 class="title__blue-fz30" style="margin-right: 150px">
+              Запросы
+            </h2>
+            <div>
+              <button class="btn-select-requests" id="incomingBtn">
+                Активные запросы
+              </button>
+              <button class="btn-select-requests" id="outgoingBtn">
+                Неактивные запросы
+              </button>
+              <!-- <button class="btn-select-requests" id="basketBtn">
+                Корзина
+              </button> -->
+            </div>
+          </div>
+          <button id="composeBtn">Написать</button>
+
+          <!-- Добавьте в HTML -->
+          <div id="emailFormOverlay" class="email-form-overlay">
+            <form id="emailForm" class="email-form">
+              <!-- <input type="email" id="emailTo" placeholder="Кому" required /> -->
+              <select
+                name="select"
+                name="target__reauest"
+                class="content__input-small content__input-select"
+                id="product__select"
+              >
+                <option value="" selected disabled>Кому</option>
+                <option class="option" value="Техническая поддержка">
+                  Техническая поддержка
+                </option>
+                <option class="option" value="Интеграторам">
+                  Интеграторам
+                </option>
+                <option class="option" value="Запрос документации">
+                  Запрос документации
+                </option>
+                <option class="option" value="Запрос пробной версии">
+                  Запрос пробной версии
+                </option>
+                <option class="option" value="Запрос ценового предложения">
+                  Запрос ценового предложения
+                </option>
+                <option class="option" value="Запрос на обучение">
+                  Запрос на обучение
+                </option>
+              </select>
+              <!-- <input
+                type="text"
+                id="emailSubject"
+                placeholder="Тема"
+                required
+              /> -->
+              <textarea
+                id="emailBody"
+                placeholder="Текст письма"
+                name="message"
+                required
+              ></textarea>
+              <div class="email-form-buttons">
+                <button type="submit">Отправить</button>
+                <button type="button" onclick="emailClient.hideEmailForm()">
+                  Отмена
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="notification" class="notification hidden"></div>
+          <div id="emailContent"></div>
+          <div class="email-blocks">
+            <div id="requestsContainer" class="email-blocks"></div>
+            <div id="emailModal" class="modal">
+              <div class="modal-header" id="modalHeader"></div>
+              <div class="modal-content" id="modalContent"></div>
+              <div class="modal-footer">
+                <button onclick="emailClient.closeModal()">Закрыть</button>
+              </div>
+            </div>
+            <!-- <div class="email-block">
+              <img
+                class="email-img-type"
+                width="40"
+                src="../media/Group-Message.svg"
+                alt="icon"
+              />
+              <p class="email-type">Техническая поддержка</p>
+              <p class="email-description">Наименование объекта</p>
+              <button class="btn-email-del">Удалить</button>
+            </div>
+            <div class="email-block">
+              <img
+                class="email-img-type"
+                width="40"
+                src="../media/Group-Message.svg"
+                alt="icon"
+              />
+              <p class="email-type">Техническая поддержка</p>
+              <p class="email-description">Наименование объекта</p>
+              <button class="btn-email-del">Удалить</button>
+            </div>
+            <div class="email-block">
+              <img
+                class="email-img-type"
+                width="40"
+                src="../media/Group-Message.svg"
+                alt="icon"
+              />
+              <p class="email-type">Техническая поддержка</p>
+              <p class="email-description">Наименование объекта</p>
+              <button class="btn-email-del">Удалить</button>
+            </div>
+            <div class="email-block">
+              <img
+                class="email-img-type"
+                width="40"
+                src="../media/Group-Message.svg"
+                alt="icon"
+              />
+              <p class="email-type">Техническая поддержка</p>
+              <p class="email-description">Наименование объекта</p>
+              <button class="btn-email-del">Удалить</button>
+            </div>
+            <div class="email-block">
+              <img
+                class="email-img-type"
+                width="40"
+                src="../media/Group-Message.svg"
+                alt="icon"
+              />
+              <p class="email-type">Техническая поддержка</p>
+              <p class="email-description">Наименование объекта</p>
+              <button class="btn-email-del">Удалить</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__blocks">
+          <div class="footer__block">
+            <h1 class="footer__title">Головной офис</h1>
+            <p class="footer__item footer__email-icon mt-30">int@scadaint.ru</p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+          <div class="footer__block">
+            <h1 class="footer__title">Техническая поддержка</h1>
+            <p class="footer__item footer__email-icon mt-30">
+              support@scadaint.ru
+            </p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+          <div class="footer__block">
+            <h1 class="footer__title">Коммерческий отдел</h1>
+            <p class="footer__item footer__email-icon mt-30">
+              commerce@scadaint.ru
+            </p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__hr mt-50" />
+      <h4 class="footer__copyright">(с) 2022 Все права защищены</h4>
+    </footer>
+    <script>
+      /*class EmailSystem {
+              constructor() {
+                this.requests = {
+                  incoming: [],
+                  outgoing: [],
+                  basket: []
+                };
+
+                this.initializeElements();
+                this.attachEventListeners();
+                this.loadInitialState();
+              }
+
+              initializeElements() {
+                this.incomingBtn = document.getElementById("incomingBtn");
+                this.outgoingBtn = document.getElementById("outgoingBtn");
+                this.basketBtn = document.getElementById("basketBtn");
+                this.requestsContainer = document.getElementById("requestsContainer");
+                this.composeBtn = document.getElementById("composeBtn");
+                this.emailFormOverlay = document.getElementById("emailFormOverlay");
+                this.cancelEmailBtn = document.getElementById("cancelEmail");
+                this.sendEmailBtn = document.getElementById("sendEmail");
+                this.emailForm = document.querySelector(".email-form");
+              }
+
+              attachEventListeners() {
+                this.incomingBtn.addEventListener("click", (e) => this.handleButtonClick(e));
+                this.outgoingBtn.addEventListener("click", (e) => this.handleButtonClick(e));
+                this.basketBtn.addEventListener("click", (e) => this.handleButtonClick(e));
+                this.composeBtn.addEventListener("click", () => this.showEmailForm());
+                this.cancelEmailBtn.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  this.hideEmailForm();
+                });
+                this.emailForm.addEventListener("submit", (e) => this.handleEmailSubmit(e));
+                this.emailFormOverlay.addEventListener("click", (e) => {
+                  if (e.target === this.emailFormOverlay) {
+                    this.hideEmailForm();
+                  }
+                });
+                this.requestsContainer.addEventListener("click", (e) => this.handleEmailActions(e));
+              }
+
+              loadInitialState() {
+                this.incomingBtn.classList.add("active");
+                this.showRequests("incoming");
+              }
+
+              async handleEmailSubmit(e) {
+                e.preventDefault();
+
+                const to = document.getElementById("emailTo").value;
+                const subject = document.getElementById("emailSubject").value;
+                const body = document.getElementById("emailBody").value;
+
+                if (!to || !subject || !body) {
+                  alert("Пожалуйста, заполните все поля");
+                  return;
+                }
+
+                try {
+                  const response = await fetch('http://localhost:3000/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ to, subject, body })
+                  });
+
+                  const result = await response.json();
+
+                  if (result.success) {
+                    this.requests.outgoing.unshift({
+                      type: "Отправленное сообщение",
+                      description: subject,
+                      content: body
+                    });
+
+                    this.hideEmailForm();
+
+                    if (this.outgoingBtn.classList.contains("active")) {
+                      this.showRequests("outgoing");
+                    }
+
+                    alert('Письмо успешно отправлено');
+                  } else {
+                    alert('Ошибка при отправке письма');
+                  }
+                } catch (error) {
+                  console.error('Error:', error);
+                  alert('Ошибка при отправке письма');
+                }
+              }
+
+              showEmailForm(type, index) {
+                const emailTo = document.getElementById("emailTo");
+                const emailSubject = document.getElementById("emailSubject");
+                const emailBody = document.getElementById("emailBody");
+
+                if (type && index !== undefined) {
+                  const email = this.requests[type][index];
+                  emailTo.value = "support@example.com";
+                  emailSubject.value = `Re: ${email.description}`;
+                  emailBody.value = `\n\nОригинальное сообщение:\n${email.content}`;
+                } else {
+                  emailTo.value = "";
+                  emailSubject.value = "";
+                  emailBody.value = "";
+                }
+
+                this.emailFormOverlay.style.display = "block";
+              }
+
+              hideEmailForm() {
+                this.emailFormOverlay.style.display = "none";
+                document.getElementById("emailTo").value = "";
+                document.getElementById("emailSubject").value = "";
+                document.getElementById("emailBody").value = "";
+              }
+
+              handleButtonClick(event) {
+                const btn = event.target;
+                const type = btn.id.replace("Btn", "");
+
+                document
+                  .querySelectorAll(".btn-select-requests")
+                  .forEach((btn) => btn.classList.remove("active"));
+
+                btn.classList.add("active");
+                this.showRequests(type);
+              }
+
+              showRequests(type) {
+                this.requestsContainer.innerHTML = "";
+                this.requests[type].forEach((request, index) => {
+                  const emailBlock = document.createElement("div");
+                  emailBlock.classList.add("email-block");
+                  emailBlock.innerHTML = `
+                    <img class="email-img-type" width="40" src="../media/Group-Message.svg" alt="icon">
+                    <p class="email-type">${request.type}</p>
+                    <p class="email-description">${request.description}</p>
+                    <div class="email-block-buttons">
+                      <button class="btn-email-open" data-type="${type}" data-index="${index}">Открыть</button>
+                      <button class="btn-email-del">Удалить</button>
+                    </div>
+                  `;
+                  this.requestsContainer.appendChild(emailBlock);
+                });
+              }
+
+              handleEmailActions(e) {
+                if (e.target.classList.contains("btn-email-open")) {
+                  const type = e.target.dataset.type;
+                  const index = parseInt(e.target.dataset.index);
+                  this.showEmailForm(type, index);
+                } else if (e.target.classList.contains("btn-email-del")) {
+                  const emailBlock = e.target.closest(".email-block");
+                  if (emailBlock) {
+                    const type = emailBlock.querySelector(".email-type").textContent;
+                    const description = emailBlock.querySelector(".email-description").textContent;
+
+                    this.requests.basket.unshift({
+                      type: type,
+                      description: description,
+                      content: "Перемещено в корзину"
+                    });
+
+                    emailBlock.remove();
+                  }
+                }
+              }
+            }
+
+            // Initialize the email system
+            const emailSystem = new EmailSystem();*/
+
+      /*class EmailSystem {
+              constructor() {
+                this.requests = {
+                  incoming: [],
+                  outgoing: [],
+                  basket: []
+                };
+
+                this.initializeElements();
+                this.loadFromStorage();
+                this.attachEventListeners();
+                this.loadInitialState();
+              }
+
+              initializeElements() {
+                this.incomingBtn = document.getElementById("incomingBtn");
+                this.outgoingBtn = document.getElementById("outgoingBtn");
+                this.basketBtn = document.getElementById("basketBtn");
+                this.requestsContainer = document.getElementById("requestsContainer");
+                this.composeBtn = document.getElementById("composeBtn");
+                this.emailFormOverlay = document.getElementById("emailFormOverlay");
+                this.cancelEmailBtn = document.getElementById("cancelEmail");
+                this.sendEmailBtn = document.getElementById("sendEmail");
+                this.emailForm = document.querySelector(".email-form");
+              }
+
+              loadFromStorage() {
+                try {
+                  const storedData = localStorage.getItem('emailSystem');
+                  if (storedData) {
+                    this.requests = JSON.parse(storedData);
+                  }
+                } catch (error) {
+                  console.error('Error loading from localStorage:', error);
+                }
+              }
+
+              saveToStorage() {
+                try {
+                  localStorage.setItem('emailSystem', JSON.stringify(this.requests));
+                } catch (error) {
+                  console.error('Error saving to localStorage:', error);
+                }
+              }
+
+              attachEventListeners() {
+                this.incomingBtn.addEventListener("click", (e) => this.handleButtonClick(e));
+                this.outgoingBtn.addEventListener("click", (e) => this.handleButtonClick(e));
+                this.basketBtn.addEventListener("click", (e) => this.handleButtonClick(e));
+                this.composeBtn.addEventListener("click", () => this.showEmailForm());
+                this.cancelEmailBtn.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  this.hideEmailForm();
+                });
+                this.emailForm.addEventListener("submit", (e) => this.handleEmailSubmit(e));
+                this.emailFormOverlay.addEventListener("click", (e) => {
+                  if (e.target === this.emailFormOverlay) {
+                    this.hideEmailForm();
+                  }
+                });
+                this.requestsContainer.addEventListener("click", (e) => this.handleEmailActions(e));
+
+                // Fetch emails periodically
+                this.startEmailFetching();
+              }
+
+              startEmailFetching() {
+                this.fetchEmails();
+                // Fetch emails every 5 minutes
+                setInterval(() => this.fetchEmails(), 5 * 60 * 1000);
+              }
+
+              async fetchEmails() {
+          try {
+              const response = await fetch('http://localhost:3000/api/get-emails');
+              const result = await response.json();
+
+              // Log the complete result for debugging
+              console.log(result);
+
+              // Check if the fetch was successful
+              if (result.success) {
+                  const newEmails = result.emails.map(email => ({
+                      type: "Входящее",
+                      description: email.subject,
+                      content: email.body,
+                      from: email.from,
+                      date: email.date
+                  }));
+
+                  // Отобразим последние 15 входящих
+                  this.renderEmails(newEmails);
+              } else {
+                  console.error("Failed to fetch emails:", result.error);
+              }
+          } catch (error) {
+              console.error('Error fetching emails:', error);
+          }
+      }
+
+      // Функция для отображения сообщений
+      renderEmails(emails) {
+          const emailContainer = document.querySelector('.emailContainer'); // Убедитесь, что этот ID указан в вашем HTML
+          emailContainer.innerHTML = ''; // Очистить контейнер перед добавлением новых сообщений
+
+          emails.forEach(email => {
+              const emailBlock = document.createElement('div');
+              emailBlock.className = 'email-block'; // Класс для блока письма
+              emailBlock.innerHTML = `
+                  <h3>${email.description}</h3>
+                  <p>От: ${email.from}</p>
+                  <p>Дата: ${email.date}</p>
+                  <button onclick="showEmailContent('${email.description}', '${email.content}')">Открыть</button>
+              `;
+              emailContainer.appendChild(emailBlock); // Добавление нового элемента в контейнер
+          });
+      }
+
+      showEmailContent(subject, content) {
+          const emailContentBlock = document.getElementById('emailContent'); // Контейнер для отображения содержания письма
+          emailContentBlock.innerHTML = `<h2>${subject}</h2><p>${content}</p>`; // Заполнение содержимым
+      }
+
+              loadInitialState() {
+                this.incomingBtn.classList.add("active");
+                this.showRequests("incoming");
+              }
+
+              async handleEmailSubmit(e) {
+                e.preventDefault();
+
+                const to = document.getElementById("emailTo").value;
+                const subject = document.getElementById("emailSubject").value;
+                const body = document.getElementById("emailBody").value;
+
+                if (!to || !subject || !body) {
+                  alert("Пожалуйста, заполните все поля");
+                  return;
+                }
+
+                try {
+                  const response = await fetch('http://localhost:3000/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ to, subject, body })
+                  });
+
+                  const result = await response.json();
+
+                  if (result.success) {
+                    const newEmail = {
+                      type: "Отправленное сообщение",
+                      description: subject,
+                      content: body,
+                      date: new Date().toISOString()
+                    };
+
+                    this.requests.outgoing.unshift(newEmail);
+                    this.saveToStorage();
+
+                    this.hideEmailForm();
+
+                    if (this.outgoingBtn.classList.contains("active")) {
+                      this.showRequests("outgoing");
+                    }
+
+                    alert('Письмо успешно отправлено');
+                  } else {
+                    alert('Ошибка при отправке письма');
+                  }
+                } catch (error) {
+                  console.error('Error:', error);
+                  alert('Ошибка при отправке письма');
+                }
+              }
+
+              showEmailForm(type, index) {
+                const emailTo = document.getElementById("emailTo");
+                const emailSubject = document.getElementById("emailSubject");
+                const emailBody = document.getElementById("emailBody");
+
+                if (type && index !== undefined) {
+                  const email = this.requests[type][index];
+                  emailTo.value = "support@example.com";
+                  emailSubject.value = `Re: ${email.description}`;
+                  emailBody.value = `\n\nОригинальное сообщение:\n${email.content}`;
+                } else {
+                  emailTo.value = "";
+                  emailSubject.value = "";
+                  emailBody.value = "";
+                }
+
+                this.emailFormOverlay.style.display = "block";
+              }
+
+              hideEmailForm() {
+                this.emailFormOverlay.style.display = "none";
+                document.getElementById("emailTo").value = "";
+                document.getElementById("emailSubject").value = "";
+                document.getElementById("emailBody").value = "";
+              }
+
+              handleButtonClick(event) {
+                const btn = event.target;
+                const type = btn.id.replace("Btn", "");
+
+                document
+                  .querySelectorAll(".btn-select-requests")
+                  .forEach((btn) => btn.classList.remove("active"));
+
+                btn.classList.add("active");
+                this.showRequests(type);
+              }
+
+              showRequests(type) {
+                this.requestsContainer.innerHTML = "";
+                this.requests[type].forEach((request, index) => {
+                  const emailBlock = document.createElement("div");
+                  emailBlock.classList.add("email-block");
+                  emailBlock.innerHTML = `
+                    <img class="email-img-type" width="40" src="../media/Group-Message.svg" alt="icon">
+                    <p class="email-type">${request.type}</p>
+                    <p class="email-description">${request.description}</p>
+                    ${request.from ? `<p class="email-from">От: ${request.from}</p>` : ''}
+                    ${request.date ? `<p class="email-date">${new Date(request.date).toLocaleString()}</p>` : ''}
+                    <div class="email-block-buttons">
+                      <button class="btn-email-open" data-type="${type}" data-index="${index}">Открыть</button>
+                      <button class="btn-email-del">Удалить</button>
+                    </div>
+                  `;
+                  this.requestsContainer.appendChild(emailBlock);
+                });
+              }
+
+              handleEmailActions(e) {
+                if (e.target.classList.contains("btn-email-open")) {
+                  const type = e.target.dataset.type;
+                  const index = parseInt(e.target.dataset.index);
+                  this.showEmailForm(type, index);
+                } else if (e.target.classList.contains("btn-email-del")) {
+                  const emailBlock = e.target.closest(".email-block");
+                  if (emailBlock) {
+                    const type = emailBlock.querySelector(".email-type").textContent;
+                    const description = emailBlock.querySelector(".email-description").textContent;
+                    const content = this.requests[this.getCurrentTab()][parseInt(emailBlock.querySelector(".btn-email-open").dataset.index)].content;
+
+                    this.requests.basket.unshift({
+                      type: type,
+                      description: description,
+                      content: content,
+                      date: new Date().toISOString()
+                    });
+
+                    // Remove from current category
+                    const currentTab = this.getCurrentTab();
+                    const index = parseInt(emailBlock.querySelector(".btn-email-open").dataset.index);
+                    this.requests[currentTab].splice(index, 1);
+
+                    this.saveToStorage();
+                    this.showRequests(currentTab);
+                  }
+                }
+              }
+
+              getCurrentTab() {
+                if (this.incomingBtn.classList.contains("active")) return "incoming";
+                if (this.outgoingBtn.classList.contains("active")) return "outgoing";
+                if (this.basketBtn.classList.contains("active")) return "basket";
+                return "incoming";
+              }
+            }
+
+            // Initialize the email system
+            const emailSystem = new EmailSystem();*/
+
+      class EmailClient {
+        constructor() {
+          this.requests = {
+            incoming: [],
+            outgoing: [],
+            basket: [],
+          };
+          this.currentTab = "incoming";
+          this.requestsContainer = document.getElementById("requestsContainer");
+          this.emailFormOverlay = document.getElementById("emailFormOverlay");
+          this.emailForm = document.getElementById("emailForm");
+
+          this.initializeEventListeners();
+          this.loadOutgoingEmails();
+          this.fetchEmails();
+        }
+
+        initializeEventListeners() {
+          document
+            .getElementById("incomingBtn")
+            .addEventListener("click", () => this.showRequests("incoming"));
+          document
+            .getElementById("outgoingBtn")
+            .addEventListener("click", () => this.showRequests("outgoing"));
+          document
+            .getElementById("composeBtn")
+            .addEventListener("click", () => this.showEmailForm());
+          this.emailForm.addEventListener("submit", (e) =>
+            this.handleEmailSubmit(e)
+          );
+          this.emailFormOverlay.addEventListener("click", (e) => {
+            if (e.target === this.emailFormOverlay) {
+              this.hideEmailForm();
+            }
+          });
+        }
+
+        async fetchEmails() {
+          const storedEmails = localStorage.getItem("incomingEmails");
+          if (storedEmails) {
+            this.requests.incoming = JSON.parse(storedEmails);
+            this.showRequests("incoming");
+          } else {
+            try {
+              const response = await fetch(
+                "http://localhost:3000/api/get-emails"
+              );
+              const result = await response.json();
+              if (result.success) {
+                this.requests.incoming = result.emails.map((email) => ({
+                  type: "Входящее",
+                  description: email.subject || "Без темы",
+                  content: email.body || "",
+                  from: email.from || "Неизвестный отправитель",
+                  date: email.date || new Date().toISOString(),
+                }));
+                localStorage.setItem(
+                  "incomingEmails",
+                  JSON.stringify(this.requests.incoming)
+                );
+                this.showRequests("incoming");
+              }
+            } catch (error) {
+              console.error("Error fetching emails:", error);
+              this.showNotification("Failed to fetch emails");
+            }
+          }
+        }
+
+        loadOutgoingEmails() {
+          const storedOutgoing = localStorage.getItem("outgoingEmails");
+          if (storedOutgoing) {
+            this.requests.outgoing = JSON.parse(storedOutgoing);
+          }
+        }
+
+        saveOutgoingEmails() {
+          localStorage.setItem(
+            "outgoingEmails",
+            JSON.stringify(this.requests.outgoing)
+          );
+        }
+
+        async handleEmailSubmit(e) {
+          e.preventDefault();
+          const form = document.getElementById("emailForm");
+
+          try {
+            const select = form.querySelector('[name="select"]').value;
+            const message = form.querySelector('[name="message"]').value;
+
+            if (!select || !message) {
+              this.showNotification("Please fill in all fields");
+              return;
+            }
+
+            const response = await fetch("../php2.php", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ select, message }),
+            });
+
+            const text = await response.text();
+            let result;
+
+            try {
+              result = JSON.parse(text);
+            } catch (parseError) {
+              console.error("Failed to parse response:", text);
+              throw new Error("Invalid server response");
+            }
+
+            if (result.success) {
+              const newEmail = {
+                type: "Исходящие",
+                description: select,
+                content: message,
+                date: new Date().toISOString(),
+              };
+
+              this.requests.outgoing.unshift(newEmail);
+              this.saveOutgoingEmails();
+              this.hideEmailForm();
+
+              if (this.currentTab === "outgoing") {
+                this.showRequests("outgoing");
+              }
+
+              this.showNotification("Message sent successfully");
+              form.reset();
+            } else {
+              throw new Error(result.message || "Failed to send message");
+            }
+          } catch (error) {
+            console.error("Error sending email:", error);
+            this.showNotification(`Error: ${error.message}`);
+          }
+        }
+
+        showRequests(type) {
+          this.currentTab = type;
+          this.requestsContainer.innerHTML = "";
+
+          this.requests[type].forEach((request, index) => {
+            const emailBlock = document.createElement("div");
+            emailBlock.classList.add("email-block");
+            emailBlock.innerHTML = `
+        <img class="email-img-type" width="40" src="../media/Group-Message.svg" alt="icon">
+        <p class="email-type">${request.type}</p>
+        <p class="email-description">${request.description}</p>
+        ${request.from ? `<p class="email-from">От: ${request.from}</p>` : ""}
+        <div class="email-block-buttons">
+          <button class="btn-email-open" data-type="${type}" data-index="${index}">Открыть</button>
+          ${
+            type !== "basket"
+              ? `<button class="btn-email-del" data-type="${type}" data-index="${index}">В корзину</button>`
+              : `<button class="btn-email-permanent-del" data-index="${index}">Удалить навсегда</button>`
+          }
+        </div>
+      `;
+
+            const openButton = emailBlock.querySelector(".btn-email-open");
+            openButton.addEventListener("click", () =>
+              this.openEmailModal(type, index)
+            );
+
+            const deleteButton = emailBlock.querySelector(
+              ".btn-email-del, .btn-email-permanent-del"
+            );
+            if (deleteButton) {
+              deleteButton.addEventListener("click", () => {
+                if (
+                  deleteButton.classList.contains("btn-email-permanent-del")
+                ) {
+                  this.permanentlyDelete(index);
+                } else {
+                  this.moveToBasket(type, index);
+                }
+              });
+            }
+
+            this.requestsContainer.appendChild(emailBlock);
+          });
+        }
+
+        openEmailModal(type, index) {
+          const email = this.requests[type][index];
+          document.getElementById("modalHeader").innerText = email.description;
+          document.getElementById("modalContent").innerHTML = `
+      <p><strong>От:</strong> ${email.from || "Неизвестен"}</p>
+      <p><strong>Дата:</strong> ${new Date(email.date).toLocaleString()}</p>
+      <p><strong>Содержимое:</strong></p>
+      <p>${email.content}</p>
+    `;
+          document.getElementById("emailModal").style.display = "block";
+        }
+
+        closeModal() {
+          document.getElementById("emailModal").style.display = "none";
+        }
+
+        moveToBasket(type, index) {
+          const emailToMove = this.requests[type].splice(index, 1)[0];
+          this.requests.basket.unshift(emailToMove);
+          this.saveOutgoingEmails();
+          this.showRequests(type);
+        }
+
+        permanentlyDelete(index) {
+          if (confirm("Вы уверены, что хотите удалить это письмо навсегда?")) {
+            this.requests.basket.splice(index, 1);
+            this.showRequests("basket");
+          }
+        }
+
+        showEmailForm() {
+          this.emailFormOverlay.style.display = "block";
+          this.emailForm.reset();
+        }
+
+        hideEmailForm() {
+          this.emailFormOverlay.style.display = "none";
+        }
+
+        showNotification(message) {
+          const notification = document.getElementById("notification");
+          notification.innerText = message;
+          notification.classList.remove("hidden");
+          notification.classList.add("visible");
+
+          setTimeout(() => {
+            notification.classList.remove("visible");
+            notification.classList.add("hidden");
+          }, 3000);
+        }
+      }
+      const emailClient = new EmailClient();
+    </script>
+  </body>
+</html>

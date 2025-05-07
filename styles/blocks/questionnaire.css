@@ -1,0 +1,248 @@
+
+
+.form__questionnaireOne,
+.form__questionnaireTwo,
+.form__questionnaireThree,
+.form__questionnaireFour,
+.form__questionnaireFive,
+.form__questionnaireSix,
+.form__questionnaireSeven,
+.form__questionnaireEight,
+.form__questionnaireNine {
+    max-width: 840px;
+    background: var(--color-base-white);
+    box-shadow: 0px 0px 20px #004578;
+    margin-left: 340px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.form__questionnaireOne {
+    min-height: 925px;
+}
+
+.form__questionnaire-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--color-text-grey);
+    text-align: center;
+    padding-top: 60px;
+}
+
+.form__questionnaire-subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--color-text-grey);
+    text-align: center;
+    margin-top: 5px;
+}
+
+.form__questionnaire-scale {
+    width: 570px;
+    height: 30px;
+    background: linear-gradient(270deg, #004578 0%, #5EA0D0 100%);
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.form__questionnaire-block {
+    margin-top: 53px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 760px;
+    box-sizing: border-box;
+}
+
+.form__input-name,
+.form__checkbox-text {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--color-text-grey);
+}
+
+.star {
+    color: var(--color-primary-red);
+}
+
+.form__input-big,
+.form__input-small,
+.form__textarea {
+    border: 2px solid #CBD4DF;
+    border-radius: 3px;
+    font-size: 18px;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.form__input-big {
+    width: 760px;
+    height: 40px;
+}
+
+.form__inputs-block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.form__input-small {
+    width: 370px;
+    height: 40px;
+}
+
+.delimiter {
+    width: 759px;
+    border: 4px solid var(--color-auth-bg-blue);
+    margin: 40px 0px 50px  0px;
+}
+
+.form__text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    color: var(--color-melange-grey);
+}
+
+.form__buttons-bot {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.btn__questionnaire-back,
+.btn__questionnaire-forward {
+    width: 160px;
+    height: 38px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--color-base-white);  
+}
+
+.btn__questionnaire-back {
+    background: #CBD4DF;
+}
+
+.btn__questionnaire-clean {
+    width: 300px;
+    height: 38px;
+    background-color: var(--color-base-white);
+    border: 3px solid #CBD4DF;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #CBD4DF;
+}
+
+.btn__questionnaire-forward {
+    background: var(--color-btn-blue);
+}
+
+.form__questionnaireTwo {
+    min-height: 1553px;
+}
+
+.small-caps {
+    font-variant: small-caps;
+}
+
+.form__checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.form__checkbox+.form__checkbox-text {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.form__checkbox+.form__checkbox-text::before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    background: var(--color-base-white);
+    border: 3px solid var(--color-melange-grey);
+    border-radius: 3px;
+    margin-right: 17px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.form__checkbox:not(:checked)+.form__checkbox-text:hover::before {
+    background: #E3E3E4;
+}
+
+.form__checkbox:checked+.form__checkbox-text::before {
+    background-color: var(--color-melange-grey);
+    background-image: url(../../media/checked.svg);
+}
+
+.form__select {
+    appearance: none;
+    color: var(--color-melange-grey);
+    width: 370px;
+    height: 40px;
+    border: 2px solid #CBD4DF;
+    border-radius: 3px;
+    font-size: 18px;
+    margin-top: 10px;
+    padding-left: 15px;
+}
+
+.form__questionnaireThree {
+    min-height: 781px;
+}
+
+.form__questionnaireFour {
+    min-height: 663px;
+}
+
+.form__questionnaireFive {
+    min-height: 681px;
+}
+
+.form__questionnaireSix {
+    min-height: 699px;
+}
+
+.form__questionnaireSeven {
+    min-height: 1027px;
+}
+
+.form__questionnaireEight {
+    min-height: 910px;
+}
+
+.form__text-black {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+    color: var(--color-text-grey);
+    margin-top: 20px;
+}
+
+.form__textarea {
+    width: 760px;
+    height: 170px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn__questionnaire-send {
+    width: 760px;
+    height: 40px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-base-white);
+    background: var(--color-btn-blue);
+    margin-top: 40px;
+}
+
+.form__questionnaireNine {
+    min-height: 379px;
+}

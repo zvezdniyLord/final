@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+  <head>
+    <script src="./client/auth-check.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <title>Запросы</title>
+    <style>
+      /* Стили для заявок в поддержку */
+      .tickets-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px; /* Расстояние между заявками */
+}
+
+#closeTicketBtn {
+    height: 50px;
+    width: 125px;
+    background-color: #dc3545;
+    color: white;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+#closeTicketBtn:hover {
+    background-color: #b22231;
+}
+
+.ticket-item-new {
+    background-color: #f7f8fa; /* Светло-серый фон, как на примере */
+    border-radius: 8px;
+    padding: 18px 24px;
+    display: flex;
+    flex-direction: column; /* Основные элементы друг под другом */
+    gap: 8px; /* Расстояние между элементами внутри заявки */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #e8e9ec; /* Тонкая рамка */
+    position: relative; /* Для стрелки */
+    width: 100%;
+    max-width: 100%;
+}
+
+.ticket-item-new:hover {
+    background-color: #eff1f5; /* Чуть темнее при наведении */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.ticket-main-info {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Расстояние между номером заявки и статусом */
+}
+
+.ticket-id-new {
+    font-family: 'Inter', sans-serif; /* Пример шрифта, замените на свой */
+    font-size: 16px;
+    font-weight: 600; /* Полужирный */
+    color: #595f69; /* Темно-серый, почти черный */
+}
+
+/* Стили для значка статуса */
+.ticket-status-badge {
+    padding: 3px 10px;
+    border-radius: 12px; /* Более овальная форма */
+    font-size: 11px;
+    font-weight: 600; /* Полужирный */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+.status-badge-open,
+.status-badge-waiting { /* Объединил стили для "Открыта" и "Ожидает ответа" */
+    background-color: #e6f7ff; /* Светло-голубой фон */
+    color: #1890ff;       /* Синий текст */
+    /* border: 1px solid #91d5ff; /* Можно добавить рамку, если нужно */
+}
+
+.status-badge-closed {
+    background-color: #f0f2f5; /* Светло-серый фон */
+    color: #8c98a8;       /* Серый текст */
+    /* border: 1px solid #d9d9d9; */
+}
+
+.ticket-subject-new {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500; /* Средний */
+    color: #2c3e50; /* Темно-синий/серый */
+    line-height: 1.4;
+    /* Ограничение по количеству строк, если тема очень длинная */
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Показать только одну строку */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0; /* Убираем лишние отступы у параграфа */
+}
+
+.ticket-preview-new {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #7f8c8d; /* Более светлый серый для превью */
+    line-height: 1.5;
+    /* Ограничение по количеству строк */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Показать максимум две строки */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.ticket-arrow-new {
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #bdc3c7; /* Светло-серый для стрелки */
+    transition: color 0.2s ease-in-out;
+}
+
+.ticket-item-new:hover .ticket-arrow-new {
+    color: #1890ff; /* Синий при наведении на заявку */
+}
+
+/* Стили для состояния загрузки и отсутствия заявок (могут уже быть) */
+.loading,
+.no-tickets {
+    text-align: center;
+    padding: 30px;
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+.error-message { /* Если у вас есть такой класс для ошибок */
+    text-align: center;
+    padding: 20px;
+    color: #e74c3c;
+    background-color: #fceded;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+.filter-btn {
+  padding: 8px 16px;
+  background-color: #f0f2f5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+}
+
+.filter-btn.active {
+  background-color: #e6f7ff;
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.create-ticket-btn {
+  padding: 8px 16px;
+  background-color: #eff1f5;
+  color: var(--color-title-blue);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  margin-left: 1rem;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.create-ticket-btn:hover {
+  background-color: white;
+}
+
+.plus-icon {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tickets-container {
+  margin-top: 20px;
+}
+
+.ticket-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f9f9fb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ticket-item:hover {
+  background-color: #f0f2f5;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ticket-info {
+  flex: 1;
+}
+
+.ticket-number {
+  color: #8c8c8c;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.ticket-preview {
+  color: #595959;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 500px;
+}
+
+.ticket-status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-open {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.status-closed {
+  background-color: #f5f5f5;
+  color: #8c8c8c;
+}
+
+.selected-file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin-top: 5px;
+    background-color: #f0f2f5;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.selected-file-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+
+.remove-file-btn {
+    background: none;
+    border: none;
+    color: #ff4d4f; /* Красный цвет для кнопки удаления */
+    cursor: pointer;
+    font-weight: bold;
+    padding: 2px 5px;
+}
+
+.remove-file-btn:hover {
+    color: #cf1322;
+}
+
+/* Модальные окна */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: 50px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ticket-view-content {
+  max-width: 800px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.close-modal {
+  font-size: 24px;
+  cursor: pointer;
+  color: #8c8c8c;
+}
+
+.close-modal:hover {
+  color: #595959;
+}
+
+/* Форма заявки */
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #262626;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.submit-btn {
+  padding: 8px 16px;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #40a9ff;
+}
+
+.cancel-btn {
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+  color: #595959;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #e8e8e8;
+}
+
+/* Просмотр заявки */
+.ticket-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.status-open {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.status-closed {
+  background-color: #f5f5f5;
+  color: #8c8c8c;
+}
+
+.ticket-details {
+  margin-bottom: 20px;
+}
+
+.ticket-subject {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.ticket-message {
+  background-color: #f9f9fb;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}
+
+.ticket-messages {
+  margin-bottom: 20px;
+}
+
+.message-item {
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.user-message {
+  background-color: #f0f7ff;
+  margin-left: 20px;
+}
+
+.support-message {
+  background-color: #f6ffed;
+  margin-right: 20px;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.message-content {
+  white-space: pre-wrap;
+}
+
+.reply-form-container {
+  margin-bottom: 20px;
+}
+
+.reply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reply-form textarea {
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.ticket-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.close-ticket-btn,
+.reopen-ticket-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-ticket-btn {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.close-ticket-btn:hover {
+  background-color: #ff7875;
+}
+
+.reopen-ticket-btn {
+  background-color: #52c41a;
+  color: white;
+}
+
+.reopen-ticket-btn:hover {
+  background-color: #73d13d;
+}
+
+/* Уведомления */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+  z-index: 2000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  max-width: 300px;
+}
+
+.notification.success {
+  background-color: #52c41a;
+}
+
+.notification.error {
+  background-color: #ff4d4f;
+}
+
+.notification.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #8c8c8c;
+}
+
+.tickets-header {
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .tickets-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .create-ticket-btn {
+    align-self: flex-end;
+  }
+
+  .ticket-preview {
+    max-width: 250px;
+  }
+
+  .tickets-container {
+  margin-top: 20px;
+}
+
+.ticket-item-new {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f9f9fb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ticket-item-new:hover {
+  background-color: #f0f2f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-main-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.ticket-id-new {
+  color: #8c8c8c;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ticket-status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge-open, .status-badge-waiting {
+  background-color: #e6f7ff;
+  color: #1890ff;
+  border: 1px solid #91d5ff;
+}
+
+.status-badge-closed {
+  background-color: #f5f5f5;
+  color: #8c8c8c;
+  border: 1px solid #d9d9d9;
+}
+
+.ticket-subject-new {
+  font-size: 16px;
+  font-weight: 500;
+  color: #262626;
+  margin: 5px 0;
+  flex: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticket-preview-new {
+  font-size: 14px;
+  color: #595959;
+  flex: 3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticket-arrow-new {
+  font-size: 20px;
+  color: #bfbfbf;
+}
+
+/* Стили для модального окна просмотра заявки */
+.ticket-view-content {
+  max-width: 800px; /* Увеличим ширину для переписки */
+}
+
+.ticket-status-container {
+  margin-bottom: 15px;
+}
+
+.ticket-details-view {
+  background-color: #f9f9fb;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.ticket-details-view p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.ticket-details-view p strong {
+  color: #262626;
+}
+
+.ticket-messages-container {
+  max-height: 400px; /* Ограничим высоту для прокрутки */
+  overflow-y: auto;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.message-item {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background-color: #e6f7ff;
+  margin-left: auto; /* Сообщения пользователя справа */
+  border-top-right-radius: 0;
+}
+
+.support-message {
+  background-color: #f6ffed;
+  margin-right: auto; /* Сообщения поддержки слева */
+  border-top-left-radius: 0;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.message-sender {
+  font-weight: bold;
+}
+
+.message-body p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.message-attachments h4 {
+  font-size: 13px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #595959;
+}
+
+.message-attachments ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message-attachments li a {
+  font-size: 13px;
+  color: #1890ff;
+  text-decoration: none;
+}
+
+.message-attachments li a:hover {
+  text-decoration: underline;
+}
+
+.reply-form-container {
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
+}
+
+.ticket-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+}
+
+    </style>
+  </head>
+  <body class="body">
+    <header class="header header__block">
+      <div class="header__logo-block">
+        <picture>
+          <source srcset="./media/logo-mobile.svg" media="(max-width: 440px)" />
+          <img
+            class="header__logo"
+            width="41"
+            height="41"
+            src="../media/logo.svg"
+            alt="Логотип"
+          />
+        </picture>
+        <h2 class="header__title">ИНТ</h2>
+      </div>
+      <div class="header__container">
+        <div class="header__container-items">
+          <p class="header__p">
+            <a class="header__link" href="../about.html">о нас</a>
+          </p>
+          <div class="header__p header__p-hover-product">
+            <button class="btn__header-p">
+              <a class="header__link" href="../products.html">продукты</a>
+            </button>
+            <div class="dropdown">
+              <div class="dropdown__content">
+                <a href="../iserver.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityServer</p>
+                  </div>
+                </a>
+                <a href="../reports.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityReports</p>
+                  </div>
+                </a>
+                <a href="../datatransport.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityDataTransport</p>
+                  </div>
+                </a>
+                <a href="../historyserver.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityHistoryServer</p>
+                  </div>
+                </a>
+                <a href="../hmi.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityHMI</p>
+                  </div>
+                </a>
+                <a href="../trends.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityTrends</p>
+                  </div>
+                </a>
+                <a href="../alarms.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">IntegrityAlarms</p>
+                  </div>
+                </a>
+                <a href="../webhmi.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Web Приложения</p>
+                  </div>
+                </a>
+                <a href="../licence.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Политика лицензирования</p>
+                  </div>
+                </a>
+                <a href="systemreq.html">
+                  <div class="dropdown__item dropdown__border">
+                    <p class="dropdown__text">
+                      Аппаратные системные требования
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="header__p header__p-hover-supports">
+            <button class="btn__header-p">
+              <a class="header__link" href="../supports.html">поддержка</a>
+            </button>
+            <div class="dropdown">
+              <div class="dropdown__content">
+                <a href="../supports.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Техническая поддержка</p>
+                  </div>
+                </a>
+                <a href="../integrator.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Интеграторам</p>
+                  </div>
+                </a>
+                <a href="../documentation.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос документации</p>
+                  </div>
+                </a>
+                <a href="../demo.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос пробной версии</p>
+                  </div>
+                </a>
+                <a href="../price.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос ценового предложения</p>
+                  </div>
+                </a>
+                <a href="../education.html">
+                  <div class="dropdown__item">
+                    <p class="dropdown__text">Запрос на обучение</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <p class="header__p">
+            <a class="header__link" href="../contacts.html">контакты</a>
+          </p>
+        </div>
+        <a class="tel" href="+7 (3822) 601-000">+7 (3822) 601-000</a>
+      </div>
+      <div class="header__auth-links">
+        <picture>
+          <a href="../auth.html">
+            <svg
+              class="header__avatar"
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M14.0001 7.75C15.9723 7.75 17.5716 9.34929 17.5716 11.3214C17.5716 13.2936 15.9723 14.8929 14.0001 14.8929C12.028 14.8929 10.4287 13.2936 10.4287 11.3214C10.4287 9.34929 12.028 7.75 14.0001 7.75ZM14.0001 9.25C15.1444 9.25 16.0716 10.1771 16.0716 11.3214C16.0716 12.4657 15.1444 13.3929 14.0001 13.3929C12.8559 13.3929 11.9287 12.4657 11.9287 11.3214C11.9287 10.1771 12.8559 9.25 14.0001 9.25Z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14 16.3929C18.8321 16.3929 22.75 19.895 22.75 24.2143L22.7493 24.25H20.6757C20.5721 21.3579 17.3414 18.4643 14.1071 18.4643C10.8736 18.4643 7.71929 21.3586 7.61571 24.25H5.25071L5.25 24.2143C5.25 19.895 9.16786 16.3929 14 16.3929Z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14 26C20.6274 26 26 20.6274 26 14C26 7.37258 20.6274 2 14 2C7.37258 2 2 7.37258 2 14C2 20.6274 7.37258 26 14 26ZM14 28C21.732 28 28 21.732 28 14C28 6.26801 21.732 0 14 0C6.26801 0 0 6.26801 0 14C0 21.732 6.26801 28 14 28Z"
+              />
+            </svg>
+          </a>
+        </picture>
+        <a class="header__auth-link" id="logoutBtn" href="./auth.html">Выход</a>
+      </div>
+    </header>
+    <div class="mob__menu">
+      <input class="side-menu" type="checkbox" id="side-menu" />
+      <label class="hamb" for="side-menu">
+        <span class="hamb-line"></span>
+        <div class="header__auth-link-mobile">
+          <picture>
+            <img
+              class="header__avatar"
+              src="./media/auth_avatar.svg"
+              alt="Аватарка"
+            />
+          </picture>
+          <a class="header__auth-link" href="../auth.html">Выход</a>
+        </div>
+      </label>
+
+      <nav class="nav">
+        <ul class="menu">
+          <div class="menu__block menu__block-product">
+            <p class="menu__item">Продукты</p>
+            <svg
+              class="svg"
+              width="13"
+              height="22"
+              viewBox="0 0 13 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L10 11L2 20"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="product__mobile-list mobile-list">
+            <div class="select__ll">
+              <div class="ll">
+                <a href="../iserver.html">
+                  <p class="ll-text">IntegrityServer</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../reports.html">
+                  <p class="ll-text">IntegrityReports</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../datatransport.html">
+                  <p class="ll-text">IntegrityDataTransport</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../historyserver.html">
+                  <p class="ll-text">IntegrityHistoryServer</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../hmi.html">
+                  <p class="ll-text">IntegrityHMI</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../trends.html">
+                  <p class="ll-text">IntegrityTrends</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../alarms.html">
+                  <p class="ll-text">IntegrityAlarms</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../webhmi.html">
+                  <p class="ll-text">IntegrityWebHMI</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="menu__block menu__block-supports">
+            <p class="menu__item">Поддержка</p>
+            <svg
+              class="svg-support"
+              width="13"
+              height="22"
+              viewBox="0 0 13 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 2L10 11L2 20"
+                stroke="white"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="supports__mobile-list mobile-list">
+            <div class="select__ll">
+              <div class="ll">
+                <a href="../supports.html">
+                  <p class="ll-text">Техническая поддержка</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../integrator.html">
+                  <p class="ll-text">Интеграторам</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../documentation.html">
+                  <p class="ll-text">Запрос документации</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../demo.html">
+                  <p class="ll-text">Запрос пробной версии</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../price.html">
+                  <p class="ll-text">Запрос ценового предложения</p>
+                </a>
+              </div>
+              <div class="ll">
+                <a href="../education.html">
+                  <p class="ll-text">Запрос на обучение</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <li><a href="../contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="content">
+        <div class="list__products left__block">
+          <a href="./lk.html"
+            ><button class="btn__list__products">Личные данные</button></a
+          >
+          <a href="./history.html"
+            ><button class="mt-20 btn__list__products-active">
+              История заявок
+            </button></a
+          >
+          <a href="./documents.html"
+            ><button class="mt-20 btn__list__products">Документация</button></a
+          >
+          <a href="./video.html"
+            ><button class="mt-20 btn__list__products">Видео уроки</button></a
+          >
+          <a href="./keys.html"
+            ><button class="mt-20 btn__list__products">
+              Лицензионные ключи
+            </button></a
+          >
+        </div>
+        <div class="text__products right__block">
+            <div class="tickets-header">
+              <h2 class="title__blue-fz30">Заявки в поддержку</h2>
+              <div class="tickets-filter">
+                <button class="filter-btn active" id="filterOpen" data-filter="open">Открытые</button>
+                <button class="filter-btn" id="filterClosed" data-filter="closed">Закрытые</button>
+                <button class="filter-btn" id="filterAll" data-filter="all">Все</button>
+              </div>
+              <button id="createTicketBtn" class="create-ticket-btn">
+                <span class="plus-icon">+</span> Написать заявку
+              </button>
+            </div>
+
+            <!-- Контейнер для списка заявок -->
+            <div id="ticketsContainer" class="tickets-container">
+              <div class="loading">Загрузка заявок...</div>
+            </div>
+
+            <!-- Модальное окно для создания новой заявки (остается без изменений) -->
+            <div id="ticketFormModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Новая заявка в поддержку</h3>
+                        <span class="close-modal" id="closeTicketFormBtn">&times;</span>
+                    </div>
+                    <form id="ticketForm" class="ticket-form">
+                        <div class="form-group">
+                            <label for="ticketSubject">Тема</label>
+                            <input type="text" id="ticketSubject" name="subject" placeholder="Введите тему заявки" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketMessage">Сообщение</label>
+                            <textarea id="ticketMessage" name="message" placeholder="Опишите вашу проблему или запрос" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="attachmentInput">Прикрепить файлы (до 5, макс. 10MB каждый)</label>
+                            <input type="file" id="attachmentInput" name="attachments" multiple>
+                            <small>Разрешенные типы: JPG, PNG, PDF, DOC(X), XLS(X), TXT, ZIP.</small>
+                            <!-- Контейнер для отображения списка выбранных файлов -->
+                            <div id="selectedFilesContainer" class="selected-files-container" style="margin-top: 10px;">
+                                <!-- Сюда будут добавляться выбранные файлы -->
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">Отправить заявку</button>
+                            <button type="button" class="cancel-btn" id="cancelTicketFormBtn">Отмена</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Модальное окно для просмотра заявки и переписки -->
+            <div id="ticketViewModal" class="modal" style="display: none;">
+              <div class="modal-content ticket-view-content">
+                <div class="modal-header">
+                  <h3 id="ticketViewTitle">Заявка #<span id="viewTicketNumber"></span></h3>
+                  <span class="close-modal" id="closeTicketViewBtn">&times;</span>
+                </div>
+                <div class="ticket-status-container">
+                  <span class="ticket-status-badge" id="viewTicketStatus"></span>
+                </div>
+                <div class="ticket-details-view">
+                  <p><strong>Тема:</strong> <span id="viewTicketSubject"></span></p>
+                  <p><strong>Создана:</strong> <span id="viewTicketCreatedAt"></span></p>
+                  <p id="viewTicketClosedAtContainer" style="display: none;"><strong>Закрыта:</strong> <span id="viewTicketClosedAt"></span></p>
+                </div>
+
+                <div class="ticket-messages-container" id="ticketMessagesContainer">
+                  <!-- Сообщения будут добавлены динамически -->
+                  <div class="loading">Загрузка сообщений...</div>
+                </div>
+
+                <div id="replyFormContainer" class="reply-form-container">
+                  <form id="replyForm" class="reply-form">
+                    <textarea id="replyMessage" name="message" placeholder="Введите ваш ответ..." required></textarea>
+                    <div class="form-group">
+                      <label for="replyAttachmentInput">Прикрепить файлы (до 5)</label>
+                      <input type="file" id="replyAttachmentInput" name="attachments" multiple>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить ответ</button>
+                  </form>
+                </div>
+
+                <div class="ticket-actions" id="ticketActions">
+                  <button id="closeTicketBtn" class="btn btn-danger">Закрыть заявку</button>
+                  <button id="reopenTicketBtn" class="btn btn-success" style="display: none;">Открыть заявку повторно</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Уведомление -->
+            <div id="notification" class="notification hidden"></div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__blocks">
+          <div class="footer__block">
+            <h1 class="footer__title">Головной офис</h1>
+            <p class="footer__item footer__email-icon mt-30">int@scadaint.ru</p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+          <div class="footer__block">
+            <h1 class="footer__title">Техническая поддержка</h1>
+            <p class="footer__item footer__email-icon mt-30">
+              support@scadaint.ru
+            </p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+          <div class="footer__block">
+            <h1 class="footer__title">Коммерческий отдел</h1>
+            <p class="footer__item footer__email-icon mt-30">
+              commerce@scadaint.ru
+            </p>
+            <p class="footer__item footer__mobile-icon">+7 (3822) 601-000</p>
+          </div>
+        </div>
+      </div>
+      <hr class="footer__hr mt-50" />
+      <h4 class="footer__copyright">(с) 2022 Все права защищены</h4>
+    </footer>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Убедимся, что мы на странице, где должен работать TicketManager
+    if (document.getElementById('ticketsContainer')) {
+        const ticketManager = new TicketManager();
+        ticketManager.init();
+    }
+});
+
+class TicketManager {
+    constructor() {
+        // Элементы DOM для списка заявок
+        this.ticketsContainer = document.getElementById('ticketsContainer');
+        this.createTicketBtn = document.getElementById('createTicketBtn');
+        this.filterOpenBtn = document.getElementById('filterOpen');
+        this.filterClosedBtn = document.getElementById('filterClosed');
+        this.filterAllBtn = document.getElementById('filterAll');
+
+        // Элементы DOM для модального окна СОЗДАНИЯ заявки
+        this.ticketFormModal = document.getElementById('ticketFormModal');
+        this.ticketForm = document.getElementById('ticketForm');
+        this.closeTicketFormBtn = document.getElementById('closeTicketFormBtn');
+        this.cancelTicketFormBtn = document.getElementById('cancelTicketFormBtn');
+        this.attachmentInput = document.getElementById('attachmentInput'); // Поле для выбора файлов
+        this.selectedFilesContainer = document.getElementById('selectedFilesContainer'); // Контейнер для списка файлов
+
+        // Элементы DOM для модального окна ПРОСМОТРА заявки
+        this.ticketViewModal = document.getElementById('ticketViewModal');
+        this.closeTicketViewBtn = document.getElementById('closeTicketViewBtn');
+        this.viewTicketNumber = document.getElementById('viewTicketNumber');
+        this.viewTicketStatus = document.getElementById('viewTicketStatus');
+        this.viewTicketSubject = document.getElementById('viewTicketSubject');
+        this.viewTicketCreatedAt = document.getElementById('viewTicketCreatedAt');
+        this.viewTicketClosedAtContainer = document.getElementById('viewTicketClosedAtContainer');
+        this.viewTicketClosedAt = document.getElementById('viewTicketClosedAt');
+        this.ticketMessagesContainer = document.getElementById('ticketMessagesContainer');
+        this.replyFormContainer = document.getElementById('replyFormContainer');
+        this.replyForm = document.getElementById('replyForm');
+        this.ticketActions = document.getElementById('ticketActions');
+        this.closeTicketBtn = document.getElementById('closeTicketBtn');
+        this.reopenTicketBtn = document.getElementById('reopenTicketBtn');
+
+        this.notification = document.getElementById('notification');
+
+        // Состояние
+        this.currentFilter = 'open';
+        this.token = localStorage.getItem('token');
+        this.currentTicketNumber = null;
+        this.selectedFiles = []; // Массив для хранения выбранных файлов (для формы создания)
+    }
+
+    init() {
+        if (!this.token) {
+            window.location.href = './auth.html';
+            return;
+        }
+
+        if (!this.ticketsContainer) {
+            console.error("TicketManager: Main container for tickets ('ticketsContainer') not found.");
+            return;
+        }
+
+        this.setActiveFilter(this.currentFilter);
+        this.loadTickets(this.currentFilter);
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        if (this.createTicketBtn) {
+            this.createTicketBtn.addEventListener('click', () => this.showTicketForm());
+        }
+
+        // Обработчики для модального окна СОЗДАНИЯ
+        if (this.closeTicketFormBtn) {
+            this.closeTicketFormBtn.addEventListener('click', () => this.hideTicketForm());
+        }
+        if (this.cancelTicketFormBtn) {
+            this.cancelTicketFormBtn.addEventListener('click', () => this.hideTicketForm());
+        }
+        if (this.ticketFormModal) {
+            this.ticketFormModal.addEventListener('click', (e) => {
+                if (e.target === this.ticketFormModal) this.hideTicketForm();
+            });
+        }
+        if (this.ticketForm) {
+            this.ticketForm.addEventListener('submit', (e) => this.handleTicketSubmit(e));
+        }
+        if (this.attachmentInput) { // Обработчик для выбора файлов
+            this.attachmentInput.addEventListener('change', (e) => this.handleFileSelection(e));
+        }
+
+        // Обработчики для фильтров
+        if (this.filterOpenBtn) {
+            this.filterOpenBtn.addEventListener('click', () => {
+                this.setActiveFilter('open');
+                this.loadTickets('open');
+            });
+        }
+        if (this.filterClosedBtn) {
+            this.filterClosedBtn.addEventListener('click', () => {
+                this.setActiveFilter('closed');
+                this.loadTickets('closed');
+            });
+        }
+        if (this.filterAllBtn) {
+            this.filterAllBtn.addEventListener('click', () => {
+                this.setActiveFilter('all');
+                this.loadTickets('all');
+            });
+        }
+
+        // Обработчики для модального окна ПРОСМОТРА
+        if (this.closeTicketViewBtn) {
+            this.closeTicketViewBtn.addEventListener('click', () => this.hideTicketViewModal());
+        }
+        if (this.ticketViewModal) {
+            this.ticketViewModal.addEventListener('click', (e) => {
+                if (e.target === this.ticketViewModal) this.hideTicketViewModal();
+            });
+        }
+        if (this.replyForm) {
+            this.replyForm.addEventListener('submit', (e) => this.handleReplySubmit(e));
+        }
+        if (this.closeTicketBtn) {
+            this.closeTicketBtn.addEventListener('click', () => this.closeTicket());
+        }
+        if (this.reopenTicketBtn) {
+            this.reopenTicketBtn.addEventListener('click', () => this.reopenTicket());
+        }
+    }
+
+    async loadTickets(filter = 'open') {
+        if (!this.ticketsContainer) return;
+        this.ticketsContainer.innerHTML = '<div class="loading">Загрузка заявок...</div>';
+
+        try {
+            const response = await fetch(`http://localhost:5003/api/tickets?status=${filter}`, {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${this.token}` }
+            });
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    localStorage.removeItem('token');
+                    window.location.href = './auth.html';
+                    return;
+                }
+                const errorData = await response.json().catch(() => ({ message: 'Ошибка сервера' }));
+                throw new Error(errorData.message || `Ошибка загрузки: ${response.statusText}`);
+            }
+            const data = await response.json();
+            if (!data.tickets || data.tickets.length === 0) {
+                this.ticketsContainer.innerHTML = `<div class="no-tickets"><p>У вас пока нет ${this.getFilterText(filter)} заявок</p></div>`;
+                return;
+            }
+            this.renderTickets(data.tickets);
+        } catch (error) {
+            console.error('Error loading tickets:', error);
+            this.ticketsContainer.innerHTML = `<div class="error-message"><p>Не удалось загрузить: ${error.message}</p></div>`;
+        }
+    }
+
+    renderTickets(tickets) {
+        if (!this.ticketsContainer) return;
+        this.ticketsContainer.innerHTML = '';
+        if (!Array.isArray(tickets)) {
+            this.ticketsContainer.innerHTML = '<div class="error-message"><p>Ошибка: неверный формат данных.</p></div>';
+            return;
+        }
+        tickets.forEach(ticket => {
+            const ticketElement = document.createElement('div');
+            ticketElement.className = 'ticket-item-new';
+            const statusText = ticket.status === 'closed' ? 'ЗАКРЫТА' : (ticket.status === 'waiting_for_user' ? 'ОЖИДАЕТ' : 'ОТКРЫТА');
+            const statusClass = ticket.status === 'closed' ? 'status-badge-closed' : (ticket.status === 'waiting_for_user' ? 'status-badge-waiting' : 'status-badge-open');
+            const subject = ticket.subject || 'Без темы';
+            const ticketNumber = ticket.ticket_number || 'N/A';
+            const firstMessagePreview = (ticket.first_message || '').substring(0, 80) + ((ticket.first_message || '').length > 80 ? '...' : '');
+            ticketElement.innerHTML = `
+                <div class="ticket-main-info">
+                    <span class="ticket-id-new">Тема заявки: ${subject}</span>
+                    <span class="ticket-status-badge ${statusClass}">${statusText}</span>
+                </div>
+                <p class="ticket-preview-new">${firstMessagePreview}</p>
+                <span class="ticket-arrow-new">&gt;</span>`;
+            ticketElement.addEventListener('click', () => this.viewTicket(ticketNumber));
+            this.ticketsContainer.appendChild(ticketElement);
+        });
+    }
+
+    showTicketForm() {
+        if (this.ticketFormModal) this.ticketFormModal.style.display = 'block';
+    }
+
+    hideTicketForm() {
+        if (this.ticketFormModal) {
+            this.ticketFormModal.style.display = 'none';
+            if (this.ticketForm) this.ticketForm.reset();
+            this.selectedFiles = [];
+            if (this.selectedFilesContainer) this.selectedFilesContainer.innerHTML = '';
+        }
+    }
+
+    handleFileSelection(event) {
+        const files = event.target.files;
+        if (!files) return;
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (!this.selectedFiles.find(f => f.name === file.name && f.size === file.size)) {
+                this.selectedFiles.push(file);
+            }
+        }
+        this.renderSelectedFiles();
+        event.target.value = null; // Сброс input для повторного выбора того же файла
+    }
+
+    renderSelectedFiles() {
+        if (!this.selectedFilesContainer) return;
+        this.selectedFilesContainer.innerHTML = '';
+        this.selectedFiles.forEach((file, index) => {
+            const fileItemElement = document.createElement('div');
+            fileItemElement.className = 'selected-file-item';
+            fileItemElement.innerHTML = `
+                <span class="selected-file-name" title="${file.name}">${file.name} (${this.formatFileSize(file.size)})</span>
+                <button type="button" class="remove-file-btn" data-index="${index}">&times;</button>`;
+            fileItemElement.querySelector('.remove-file-btn').addEventListener('click', (e) => {
+                this.removeSelectedFile(parseInt(e.target.dataset.index, 10));
+            });
+            this.selectedFilesContainer.appendChild(fileItemElement);
+        });
+    }
+
+    removeSelectedFile(index) {
+        if (index >= 0 && index < this.selectedFiles.length) {
+            this.selectedFiles.splice(index, 1);
+            this.renderSelectedFiles();
+        }
+    }
+
+    async handleTicketSubmit(e) {
+        e.preventDefault();
+        const ticketSubjectInput = document.getElementById('ticketSubject');
+        const ticketMessageInput = document.getElementById('ticketMessage');
+
+        if (!ticketSubjectInput || !ticketMessageInput) {
+            this.showNotification('Ошибка: элементы формы не найдены', 'error');
+            return;
+        }
+        const subject = ticketSubjectInput.value.trim();
+        const message = ticketMessageInput.value.trim();
+        if (!subject || !message) {
+            this.showNotification('Заполните "Тема" и "Сообщение"', 'error');
+            return;
+        }
+        try {
+            const formData = new FormData();
+            formData.append('subject', subject);
+            formData.append('message', message);
+            this.selectedFiles.forEach(file => { // Используем this.selectedFiles
+                formData.append('attachments', file, file.name);
+            });
+
+            const response = await fetch('http://localhost:5003/api/tickets', { // Убедитесь, что URL правильный
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${this.token}` },
+                body: formData
+            });
+            const result = await response.json();
+            if (response.ok) {
+                this.hideTicketForm();
+                this.showNotification(result.message || 'Заявка отправлена', 'success');
+                this.loadTickets(this.currentFilter);
+            } else {
+                this.showNotification(result.message || 'Не удалось отправить', 'error');
+            }
+        } catch (error) {
+            console.error('Error submitting ticket:', error);
+            this.showNotification('Ошибка сети при отправке', 'error');
+        }
+    }
+
+    showTicketViewModal() {
+        if (this.ticketViewModal) this.ticketViewModal.style.display = 'block';
+    }
+
+    hideTicketViewModal() {
+        if (this.ticketViewModal) this.ticketViewModal.style.display = 'none';
+        this.currentTicketNumber = null;
+        if(this.ticketMessagesContainer) this.ticketMessagesContainer.innerHTML = ''; // Очищаем сообщения
+        if(this.replyForm) this.replyForm.reset(); // Очищаем форму ответа
+    }
+
+    async viewTicket(ticketNumber) {
+        this.currentTicketNumber = ticketNumber;
+        const requiredElements = [
+            this.ticketMessagesContainer, this.viewTicketNumber, this.viewTicketStatus,
+            this.viewTicketSubject, this.viewTicketCreatedAt,
+            this.viewTicketClosedAtContainer, this.viewTicketClosedAt
+        ];
+        if (requiredElements.some(el => !el)) {
+            console.error("Ticket view modal elements are missing.");
+            return;
+        }
+        this.ticketMessagesContainer.innerHTML = '<div class="loading">Загрузка...</div>';
+        this.showTicketViewModal();
+
+        try {
+            const response = await fetch(`http://localhost:5003/api/tickets/${ticketNumber}`, { // Убедитесь, что URL правильный
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${this.token}` }
+            });
+            if (!response.ok) {
+                if (response.status === 401) { /* ... */ }
+                const errorData = await response.json().catch(() => ({ message: 'Ошибка сервера' }));
+                throw new Error(errorData.message || `Ошибка: ${response.statusText}`);
+            }
+            const data = await response.json();
+            this.viewTicketNumber.textContent = data.ticket.ticket_number;
+            this.viewTicketSubject.textContent = data.ticket.subject;
+            this.viewTicketCreatedAt.textContent = new Date(data.ticket.created_at).toLocaleString();
+            const statusText = data.ticket.status === 'closed' ? 'ЗАКРЫТА' : (data.ticket.status === 'waiting_for_user' ? 'ОЖИДАЕТ' : 'ОТКРЫТА');
+            const statusClass = data.ticket.status === 'closed' ? 'status-badge-closed' : (data.ticket.status === 'waiting_for_user' ? 'status-badge-waiting' : 'status-badge-open');
+            this.viewTicketStatus.textContent = statusText;
+            this.viewTicketStatus.className = `ticket-status-badge ${statusClass}`;
+            if (data.ticket.closed_at) {
+                this.viewTicketClosedAt.textContent = new Date(data.ticket.closed_at).toLocaleString();
+                this.viewTicketClosedAtContainer.style.display = 'block';
+            } else {
+                this.viewTicketClosedAtContainer.style.display = 'none';
+            }
+            this.renderTicketMessages(data.messages);
+            this.updateTicketActions(data.ticket.status);
+        } catch (error) {
+            console.error('Error viewing ticket:', error);
+            this.showNotification('Не удалось загрузить детали', 'error');
+            this.hideTicketViewModal();
+        }
+    }
+
+    renderTicketMessages(messages) {
+        if (!this.ticketMessagesContainer) return;
+        this.ticketMessagesContainer.innerHTML = '';
+        if (!Array.isArray(messages) || messages.length === 0) {
+            this.ticketMessagesContainer.innerHTML = '<p>В этой заявке пока нет сообщений.</p>';
+            return;
+        }
+        const currentUserInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        const currentUserId = currentUserInfo.id;
+        messages.forEach(message => {
+            const messageElement = document.createElement('div');
+            let senderDisplayName = 'Неизвестно';
+            let messageClass = '';
+            if (message.sender_type === 'user') {
+                senderDisplayName = (message.sender_id === currentUserId) ? 'Вы' : (message.sender_name || message.sender_email);
+                messageClass = (message.sender_id === currentUserId) ? 'user-message' : 'user-message-other';
+            } else if (message.sender_type === 'support') {
+                senderDisplayName = 'Техподдержка ИНТ';
+                messageClass = 'support-message';
+            }
+            messageElement.className = `message-item ${messageClass}`;
+            let attachmentsHtml = '';
+            if (message.attachments && message.attachments.length > 0) {
+                attachmentsHtml = `
+                    <div class="message-attachments">
+                        <h4>Вложения:</h4>
+                        <ul>${message.attachments.map(att => `<li><a href="${att.file_path}" target="_blank" download="${att.file_name}">${att.file_name} (${this.formatFileSize(att.file_size)})</a></li>`).join('')}</ul>
+                    </div>`;
+            }
+            messageElement.innerHTML = `
+                <div class="message-header">
+                    <span class="message-sender">${senderDisplayName}</span>
+                    <span class="message-date">${new Date(message.created_at).toLocaleString()}</span>
+                </div>
+                <div class="message-body"><p>${message.message.replace(/\n/g, '<br>')}</p></div>
+                ${attachmentsHtml}`;
+            this.ticketMessagesContainer.appendChild(messageElement);
+        });
+        this.ticketMessagesContainer.scrollTop = this.ticketMessagesContainer.scrollHeight;
+    }
+
+    updateTicketActions(status) {
+        const isOpen = status !== 'closed';
+        if (this.replyFormContainer) this.replyFormContainer.style.display = isOpen ? 'block' : 'none';
+        if (this.closeTicketBtn) this.closeTicketBtn.style.display = isOpen ? 'block' : 'none';
+        if (this.reopenTicketBtn) this.reopenTicketBtn.style.display = isOpen ? 'none' : 'block';
+    }
+
+    async handleReplySubmit(e) {
+        e.preventDefault();
+        if (!this.currentTicketNumber || !this.replyForm) return;
+        const replyMessageInput = document.getElementById('replyMessage');
+        const attachmentInput = document.getElementById('replyAttachmentInput'); // Для вложений в ответе
+        if (!replyMessageInput) return;
+        const message = replyMessageInput.value.trim();
+        if (!message) {
+            this.showNotification('Введите текст сообщения', 'error');
+            return;
+        }
+        try {
+            const formData = new FormData();
+            formData.append('message', message);
+            if (attachmentInput && attachmentInput.files.length > 0) {
+                for (let i = 0; i < attachmentInput.files.length; i++) {
+                    formData.append('attachments', attachmentInput.files[i]);
+                }
+            }
+            const response = await fetch(`http://localhost:5003/api/tickets/${this.currentTicketNumber}/messages`, { // Убедитесь, что URL правильный
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${this.token}` },
+                body: formData
+            });
+            const result = await response.json();
+            if (response.ok) {
+                this.viewTicket(this.currentTicketNumber);
+                this.showNotification(result.message || 'Ответ отправлен', 'success');
+                this.replyForm.reset();
+                if(attachmentInput) attachmentInput.value = null; // Сброс input type file для ответа
+            } else {
+                this.showNotification(result.message || 'Не удалось отправить', 'error');
+            }
+        } catch (error) {
+            console.error('Error sending reply:', error);
+            this.showNotification('Ошибка сети при отправке ответа', 'error');
+        }
+    }
+
+    async closeTicket() {
+        if (!this.currentTicketNumber) return;
+        try {
+            const response = await fetch(`http://localhost:5003/api/tickets/${this.currentTicketNumber}/close`, { // Убедитесь, что URL правильный
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${this.token}` }
+            });
+            const result = await response.json();
+            if (response.ok) {
+                this.showNotification(result.message || 'Заявка закрыта', 'success');
+                this.viewTicket(this.currentTicketNumber);
+                this.loadTickets(this.currentFilter);
+            } else {
+                this.showNotification(result.message || 'Не удалось закрыть', 'error');
+            }
+        } catch (error) {
+            console.error('Error closing ticket:', error);
+            this.showNotification('Ошибка сети при закрытии', 'error');
+        }
+    }
+
+    async reopenTicket() {
+        if (!this.currentTicketNumber) return;
+        try {
+            const response = await fetch(`http://localhost:5003/api/tickets/${this.currentTicketNumber}/reopen`, { // Убедитесь, что URL правильный
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${this.token}` }
+            });
+            const result = await response.json();
+            if (response.ok) {
+                this.showNotification(result.message || 'Заявка открыта', 'success');
+                this.viewTicket(this.currentTicketNumber);
+                this.loadTickets(this.currentFilter);
+            } else {
+                this.showNotification(result.message || 'Не удалось открыть', 'error');
+            }
+        } catch (error) {
+            console.error('Error reopening ticket:', error);
+            this.showNotification('Ошибка сети при открытии', 'error');
+        }
+    }
+
+    setActiveFilter(filter) {
+        this.currentFilter = filter;
+        const buttons = [this.filterOpenBtn, this.filterClosedBtn, this.filterAllBtn];
+        buttons.forEach(button => {
+            if (button) {
+                button.classList.remove('active');
+                if (button.dataset.filter === filter) {
+                    button.classList.add('active');
+                }
+            }
+        });
+    }
+
+    formatFileSize(bytes, decimals = 2) {
+        if (!+bytes) return '0 Bytes'; // Улучшенная проверка на 0 или нечисловые значения
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+    }
+
+    getFilterText(filter) {
+        if (filter === 'open') return 'активных';
+        if (filter === 'closed') return 'закрытых';
+        return '';
+    }
+
+    showNotification(message, type) {
+        if (!this.notification) {
+            console.warn("Notification element (#notification) not found, using alert as fallback.");
+            alert(`${type.toUpperCase()}: ${message}`);
+            return;
+        }
+        this.notification.textContent = message;
+        this.notification.className = `notification ${type}`; // Убедитесь, что класс 'notification' всегда присутствует
+        this.notification.classList.remove('hidden');
+        setTimeout(() => {
+            this.notification.classList.add('hidden');
+        }, 3000);
+    }
+}
+
+    </script>
+<script src="./client/ticket.js"></script>
+  </body>
+</html>
